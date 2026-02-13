@@ -31,7 +31,7 @@ export function Footer() {
   const { brand, navLinks, footer, contact, services, hero } = site;
 
   const socials = Object.entries(contact.social).filter(([, url]) => url);
-  const serviceNames = services.flatMap((s) => s.items).slice(0, 6);
+  const serviceNames = services.flatMap((s) => s.items).slice(0, 9);
 
   return (
     <footer className="relative overflow-hidden bg-[var(--brand-black)]">
