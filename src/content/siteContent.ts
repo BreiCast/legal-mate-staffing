@@ -173,6 +173,7 @@ export const site = {
     },
     brand: {
       name: "Legal Mate Staffing",
+      logo: "/logo.png",
       tagline: "Remote legal and operations staffing you can trust",
       colorsNote: "Blue, red, black",
     },

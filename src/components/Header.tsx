@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { site } from "@/content/siteContent";
@@ -43,13 +44,15 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 text-xl font-bold tracking-tight text-[var(--brand-black)] transition hover:text-[var(--brand-blue)]"
         >
-          <span
-            aria-hidden
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--brand-blue)] text-sm font-black text-white"
-          >
-            LM
-          </span>
-          {brand.name}
+          <Image
+            src={brand.logo}
+            alt={brand.name}
+            width={120}
+            height={32}
+            className="h-8 w-auto object-contain"
+            priority
+          />
+          <span className="hidden sm:inline">{brand.name}</span>
         </Link>
 
         {/* Desktop nav */}
