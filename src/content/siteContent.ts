@@ -247,14 +247,14 @@ export const site = {
       {
         initials: "AR",
         name: "Andr\u00e9 Rodriguez Leones",
-        title: "Co-Founder, Operations and Talent Development Lead",
+        title: "Co-Founder, Talent Development",
         bio:
           "Results-driven legal operations professional with over five years of experience supporting U.S.-based law firms in case management, medical records, billing, and operational performance. Leads KPI initiatives and workflow improvements, with experience using Power BI, SQL, R, and Excel to optimize performance and decision-making.",
       },
       {
         initials: "HS",
         name: "Henry Andr\u00e9s S\u00e1nchez Mart\u00ednez",
-        title: "Co-Founder",
+        title: "Co-Founder, Operations",
         bio:
           "Colombian attorney with over four years of experience working remotely with U.S.-based organizations in legal, administrative, and customer service roles. Experienced across intake, investigation, drafting, demand preparation, medical record analysis, and insurance coordination, with additional experience in collections and high-volume customer service environments.",
       },
@@ -267,9 +267,11 @@ export const site = {
     contact: {
       email: "",
       phone: "",
+      // WhatsApp: number with country code, digits only (e.g. "1234567890")
       whatsapp: "",
       cityCountry: "",
       hours: "",
+      // Calendly (or other booking): full URL (e.g. "https://calendly.com/your-link")
       bookingUrl: "",
       labels: {
         email: "Email",
