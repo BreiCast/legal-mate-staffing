@@ -42,17 +42,17 @@ export function Header() {
         {/* Logo / Brand */}
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-bold tracking-tight text-[var(--brand-black)] transition hover:text-[var(--brand-blue)]"
+          className="flex items-center transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2 rounded-lg"
+          aria-label={brand.name}
         >
           <Image
             src={brand.logo}
-            alt={brand.name}
-            width={120}
-            height={32}
-            className="h-8 w-auto object-contain"
+            alt=""
+            width={140}
+            height={40}
+            className="h-9 w-auto object-contain sm:h-10"
             priority
           />
-          <span className="hidden sm:inline">{brand.name}</span>
         </Link>
 
         {/* Desktop nav */}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/content/siteContent";
 
 function SocialIcon({ platform }: { platform: string }) {
@@ -64,14 +65,14 @@ export function Footer() {
         <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5">
-              <span
-                aria-hidden
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--brand-blue)] text-sm font-black text-white"
-              >
-                LM
-              </span>
-              <span className="text-lg font-bold text-white">{brand.name}</span>
+            <Link href="/" className="inline-flex transition hover:opacity-90" aria-label={brand.name}>
+              <Image
+                src={brand.logo}
+                alt=""
+                width={140}
+                height={40}
+                className="h-9 w-auto object-contain"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-gray-400">
               {footer.description}
