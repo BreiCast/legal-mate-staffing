@@ -67,7 +67,7 @@ export function HeroSection() {
 
           {/* Right column: team image + floating cards */}
           <div className="relative hidden lg:block hero-animate-in-delay" aria-hidden>
-            <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-2xl border border-white/60 shadow-xl transition-shadow hover:shadow-2xl">
+            <div className="relative aspect-[4/3] max-h-[480px] overflow-hidden rounded-2xl border border-white/60 shadow-xl transition-shadow hover:shadow-2xl">
               <Image
                 src="/team.jpg"
                 alt="Legal Mate Staffing team"
@@ -78,7 +78,7 @@ export function HeroSection() {
               />
               {/* Gradient overlay so cards stay readable and image doesn't feel flat */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none rounded-2xl" aria-hidden />
-              <div className="absolute inset-5 flex flex-col justify-center gap-4 pointer-events-none">
+              <div className="absolute inset-4 flex flex-col justify-center gap-3 pointer-events-none">
                 <div className="hero-float-card-1 rounded-xl border border-[var(--brand-blue)]/15 bg-white/95 px-5 py-4 shadow-lg backdrop-blur-sm transition-shadow hover:shadow-xl hover:scale-[1.02] pointer-events-auto will-change-transform">
                   <p className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-blue)]">Active placements</p>
                   <p className="mt-1 text-sm font-medium text-[var(--brand-black)]">Case managers · Intake · Paralegals</p>
