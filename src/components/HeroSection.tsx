@@ -72,10 +72,12 @@ export function HeroSection() {
                 src="/team.jpg"
                 alt="Legal Mate Staffing team"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 sizes="(min-width: 1024px) 50vw, 0px"
                 priority
               />
+              {/* Gradient overlay so cards stay readable and image doesn't feel flat */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none rounded-2xl" aria-hidden />
               <div className="absolute inset-5 flex flex-col justify-center gap-4 pointer-events-none">
                 <div className="hero-float-card-1 rounded-xl border border-[var(--brand-blue)]/15 bg-white/95 px-5 py-4 shadow-lg backdrop-blur-sm transition-shadow hover:shadow-xl hover:scale-[1.02] pointer-events-auto will-change-transform">
                   <p className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-blue)]">Active placements</p>
