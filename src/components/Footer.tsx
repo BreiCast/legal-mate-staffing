@@ -70,7 +70,9 @@ export function Footer() {
                 alt=""
                 width={200}
                 height={56}
-                className="h-9 w-auto max-h-10 object-contain"
+                className="h-10 w-auto max-h-12 object-contain shrink-0"
+                style={{ imageRendering: "-webkit-optimize-contrast" }}
+                decoding="async"
               />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-gray-400">

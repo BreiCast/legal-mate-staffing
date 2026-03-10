@@ -49,8 +49,10 @@ export function Header() {
             alt=""
             width={200}
             height={56}
-            className="h-9 w-auto max-h-10 object-contain object-left"
+            className="h-10 w-auto max-h-12 object-contain object-left shrink-0"
+            style={{ imageRendering: "-webkit-optimize-contrast" }}
             fetchPriority="high"
+            decoding="async"
           />
         </Link>
 
