@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { site } from "@/content/siteContent";
@@ -45,13 +44,13 @@ export function Header() {
           className="flex items-center transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2 rounded-lg"
           aria-label={brand.name}
         >
-          <Image
+          <img
             src={brand.logo}
             alt=""
-            width={140}
-            height={40}
-            className="h-9 w-auto object-contain sm:h-10"
-            priority
+            width={200}
+            height={56}
+            className="h-9 w-auto max-h-10 object-contain object-left"
+            fetchPriority="high"
           />
         </Link>
 

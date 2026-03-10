@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { site } from "@/content/siteContent";
 
 function SocialIcon({ platform }: { platform: string }) {
@@ -66,12 +65,12 @@ export function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex transition hover:opacity-90" aria-label={brand.name}>
-              <Image
+              <img
                 src={brand.logo}
                 alt=""
-                width={140}
-                height={40}
-                className="h-9 w-auto object-contain"
+                width={200}
+                height={56}
+                className="h-9 w-auto max-h-10 object-contain"
               />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-gray-400">
