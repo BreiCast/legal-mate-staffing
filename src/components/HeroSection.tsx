@@ -17,7 +17,7 @@ export function HeroSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
           {/* Left column: content */}
-          <div className="flex flex-col">
+          <div className="flex flex-col hero-animate-in">
             <p className="mb-4 inline-flex w-fit items-center rounded-full border border-[var(--brand-blue)]/30 bg-[var(--brand-blue)]/5 px-4 py-1.5 text-sm font-medium text-[var(--brand-blue)]">
               {hero.badge}
             </p>
@@ -64,20 +64,25 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right column: decorative panel */}
-          <div className="relative hidden lg:block" aria-hidden>
-            <div className="relative aspect-[4/3] max-h-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-[var(--brand-blue)]/10 via-gray-100 to-[var(--brand-red)]/10">
-              {/* Abstract card stack */}
-              <div className="absolute inset-4 flex items-center justify-center">
-                <div className="h-full w-full max-w-sm space-y-4">
-                  <div className="rounded-xl border border-white/60 bg-white/80 shadow-lg backdrop-blur-sm" style={{ height: "28%" }} />
-                  <div className="ml-8 rounded-xl border border-white/60 bg-white/70 shadow-md backdrop-blur-sm" style={{ height: "36%" }} />
-                  <div className="ml-4 rounded-xl border border-[var(--brand-blue)]/20 bg-[var(--brand-blue)]/5 shadow-sm" style={{ height: "24%" }} />
+          {/* Right column: floating cards on gradient panel */}
+          <div className="relative hidden lg:block hero-animate-in-delay" aria-hidden>
+            <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-[var(--brand-blue)]/10 via-gray-50/90 to-[var(--brand-red)]/5 shadow-xl transition-shadow hover:shadow-2xl">
+              <div className="absolute inset-5 flex flex-col justify-center gap-4 pointer-events-none">
+                <div className="hero-float-card-1 rounded-xl border border-[var(--brand-blue)]/15 bg-white/95 px-5 py-4 shadow-lg backdrop-blur-sm transition-shadow hover:shadow-xl hover:scale-[1.02] pointer-events-auto will-change-transform">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-blue)]">Active placements</p>
+                  <p className="mt-1 text-sm font-medium text-[var(--brand-black)]">Case managers · Intake · Paralegals</p>
+                </div>
+                <div className="hero-float-card-2 ml-6 rounded-xl border border-[var(--brand-blue)]/10 bg-white/90 px-5 py-4 shadow-md backdrop-blur-sm transition-shadow hover:shadow-lg hover:scale-[1.02] pointer-events-auto will-change-transform">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Vetted talent</p>
+                  <p className="mt-1 text-sm font-medium text-[var(--brand-black)]">Ready to deploy · Bilingual · U.S. workflows</p>
+                </div>
+                <div className="hero-float-card-3 ml-3 rounded-xl border border-white/80 bg-[var(--brand-blue)]/5 px-5 py-3 shadow-sm transition-shadow hover:shadow-md hover:scale-[1.02] pointer-events-auto will-change-transform">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-blue)]">Scale</p>
+                  <p className="mt-1 text-sm text-gray-700">One hire to full remote teams</p>
                 </div>
               </div>
-              {/* Gradient orbs */}
-              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--brand-blue)]/20 blur-2xl" />
-              <div className="absolute -bottom-8 -left-8 h-40 w-40 rounded-full bg-[var(--brand-red)]/15 blur-2xl" />
+              <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-[var(--brand-blue)]/15 blur-2xl" aria-hidden />
+              <div className="absolute -bottom-10 -left-10 h-44 w-44 rounded-full bg-[var(--brand-red)]/10 blur-2xl" aria-hidden />
             </div>
           </div>
         </div>
