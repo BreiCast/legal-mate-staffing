@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/content/siteContent";
 import { CheckIcon } from "@/components/icons";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 
 export function HeroSection() {
   const { hero, contact } = site;
@@ -64,26 +65,15 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right column: floating cards on gradient panel */}
+          {/* Right column: reserved visual slot */}
           <div className="relative hidden lg:block hero-animate-in-delay" aria-hidden>
-            <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-[var(--brand-blue)]/10 via-gray-50/90 to-[var(--brand-red)]/5 shadow-xl transition-shadow hover:shadow-2xl">
-              <div className="absolute inset-5 flex flex-col justify-center gap-4 pointer-events-none">
-                <div className="hero-float-card-1 rounded-xl border border-[var(--brand-blue)]/15 bg-white/95 px-5 py-4 shadow-lg backdrop-blur-sm transition-shadow hover:shadow-xl hover:scale-[1.02] pointer-events-auto will-change-transform">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-blue)]">Active placements</p>
-                  <p className="mt-1 text-sm font-medium text-[var(--brand-black)]">Case managers · Intake · Paralegals</p>
-                </div>
-                <div className="hero-float-card-2 ml-6 rounded-xl border border-[var(--brand-blue)]/10 bg-white/90 px-5 py-4 shadow-md backdrop-blur-sm transition-shadow hover:shadow-lg hover:scale-[1.02] pointer-events-auto will-change-transform">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">Vetted talent</p>
-                  <p className="mt-1 text-sm font-medium text-[var(--brand-black)]">Ready to deploy · Bilingual · U.S. workflows</p>
-                </div>
-                <div className="hero-float-card-3 ml-3 rounded-xl border border-white/80 bg-[var(--brand-blue)]/5 px-5 py-3 shadow-sm transition-shadow hover:shadow-md hover:scale-[1.02] pointer-events-auto will-change-transform">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-blue)]">Scale</p>
-                  <p className="mt-1 text-sm text-gray-700">One hire to full remote teams</p>
-                </div>
-              </div>
-              <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-[var(--brand-blue)]/15 blur-2xl" aria-hidden />
-              <div className="absolute -bottom-10 -left-10 h-44 w-44 rounded-full bg-[var(--brand-red)]/10 blur-2xl" aria-hidden />
-            </div>
+            <ImagePlaceholder
+              title="Hero team visual"
+              assetPath="/images/home/hero-team.jpg"
+              src="/images/home/hero-team.jpg"
+              ratio="wide"
+              note="Use a real team or workflow image that reflects legal operations staffing."
+            />
           </div>
         </div>
       </div>

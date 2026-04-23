@@ -3,6 +3,7 @@ import { FoundersSection } from "@/components/FoundersSection";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconBadge } from "@/components/ui/IconBadge";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { iconMap, BarChartIcon, EyeIcon } from "@/components/icons";
 
 export const metadata = {
@@ -37,33 +38,41 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Stat cards */}
-            <div className="grid grid-cols-2 gap-4">
-              {aboutPage.stats.map((stat, idx) => {
-                const colors = [
-                  "from-[var(--brand-blue)]/5",
-                  "from-[var(--brand-red)]/5",
-                  "from-gray-100",
-                  "from-[var(--brand-blue)]/5 to-[var(--brand-red)]/5",
-                ];
-                const textColors = [
-                  "text-[var(--brand-blue)]",
-                  "text-[var(--brand-red)]",
-                  "text-[var(--brand-black)]",
-                  "text-[var(--brand-blue)]",
-                ];
-                return (
-                  <div
-                    key={stat.value}
-                    className={`rounded-2xl border border-gray-200 bg-gradient-to-br ${colors[idx] ?? "from-gray-100"} to-transparent p-6 text-center`}
-                  >
-                    <p className={`text-3xl font-bold ${textColors[idx] ?? "text-[var(--brand-black)]"}`}>
-                      {stat.value}
-                    </p>
-                    <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
-                  </div>
-                );
-              })}
+            {/* Story visual and stat cards */}
+            <div>
+              <ImagePlaceholder
+                title="Brand story visual"
+                assetPath="/images/about/brand-story.jpg"
+                ratio="video"
+                note="Use a brand image that reflects team culture and legal operations expertise."
+              />
+              <div className="mt-6 grid grid-cols-2 gap-4">
+                {aboutPage.stats.map((stat, idx) => {
+                  const colors = [
+                    "from-[var(--brand-blue)]/5",
+                    "from-[var(--brand-red)]/5",
+                    "from-gray-100",
+                    "from-[var(--brand-blue)]/5 to-[var(--brand-red)]/5",
+                  ];
+                  const textColors = [
+                    "text-[var(--brand-blue)]",
+                    "text-[var(--brand-red)]",
+                    "text-[var(--brand-black)]",
+                    "text-[var(--brand-blue)]",
+                  ];
+                  return (
+                    <div
+                      key={stat.value}
+                      className={`rounded-2xl border border-gray-200 bg-gradient-to-br ${colors[idx] ?? "from-gray-100"} to-transparent p-6 text-center`}
+                    >
+                      <p className={`text-3xl font-bold ${textColors[idx] ?? "text-[var(--brand-black)]"}`}>
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -130,6 +139,19 @@ export default function AboutPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 px-4 pb-0 pt-2 sm:px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-4xl">
+            <ImagePlaceholder
+              title="Founder team visual"
+              assetPath="/images/about/founder-team.jpg"
+              ratio="wide"
+              note="Use a professional founder or team photo that matches the brand tone."
+            />
           </div>
         </div>
       </section>
