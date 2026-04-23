@@ -9,7 +9,7 @@ export const site = {
     hero: {
       badge: "Trusted by law firms nationwide",
       headline: "Remote legal and operations staffing you can trust",
-      subheadline: "We connect law firms and service-based businesses with highly skilled professionals\u2014ready to integrate into your team.",
+      subheadline: "We place vetted remote legal and operations talent that plugs into your workflow quickly.",
       trustPoints: [
         "Rigorous vetting and legal industry experience",
         "Bilingual talent aligned with U.S. workflows",
@@ -48,10 +48,10 @@ export const site = {
       label: "Results that matter",
       headline: "What our clients gain",
       items: [
-        { icon: "clock", text: "Faster hiring cycles with pre-vetted, interview-ready candidates" },
-        { icon: "dollar", text: "Significant cost savings compared to domestic staffing alternatives" },
-        { icon: "users", text: "Lower turnover through cultural alignment and ongoing support" },
-        { icon: "zap", text: "Immediate productivity from professionals trained in U.S. legal workflows" },
+        { icon: "clock", text: "Shorter hiring cycles with interview-ready candidates." },
+        { icon: "dollar", text: "Lower staffing costs than most domestic alternatives." },
+        { icon: "users", text: "Stronger retention through close support and alignment." },
+        { icon: "zap", text: "Faster ramp-up in U.S. legal workflows." },
       ],
     },
     faq: {
@@ -60,29 +60,29 @@ export const site = {
       items: [
         {
           q: "What types of roles can Legal Mate Staffing fill?",
-          a: "We specialize in remote legal roles including case managers, paralegals, intake specialists, legal assistants, and medical records clerks. We also staff customer service representatives, collections agents, and virtual assistants for service-based businesses.",
+          a: "We place case managers, paralegals, intake specialists, legal assistants, and medical records staff. We also support service teams with customer service, collections, and virtual assistant roles.",
         },
         {
           q: "How do you vet and select candidates?",
-          a: "Every candidate goes through a multi-step process: technical skills evaluation, specialized interviews, background and experience verification, and cultural fit assessment. Only candidates who meet our standards are presented to clients.",
+          a: "Candidates complete technical screening, role-specific interviews, and background and experience checks. You only see people who pass our standards.",
         },
         {
           q: "Are your professionals bilingual?",
-          a: "Yes. All of our talent is bilingual in English and Spanish, trained to communicate effectively with U.S.-based teams and clients across phone, email, and case management systems.",
+          a: "Yes. Our talent is bilingual in English and Spanish and trained to work with U.S.-based teams across phone, email, and case systems.",
         },
         {
           q: "How quickly can you place a candidate?",
-          a: "In most cases, we can present qualified candidates within a few business days of understanding your needs. Timeline depends on role complexity and specific requirements.",
+          a: "Most searches deliver qualified candidates within a few business days. Timing depends on role complexity and requirements.",
         },
         {
           q: "What happens if a placement does not work out?",
-          a: "We provide continuous performance monitoring and fast replacements when needed. Our goal is long-term stability, and we work proactively to resolve any issues before they impact your operations.",
+          a: "We provide ongoing performance support and quick replacements when needed to keep operations stable.",
         },
       ],
     },
     compliance: {
       headline: "Confidentiality and Compliance",
-      text: "Our professionals are trained to handle sensitive legal and medical information with care. We emphasize confidentiality best practices, HIPAA-aware workflows, and secure data handling protocols in every placement. While we are not a covered entity, we ensure our talent understands and respects the compliance standards your firm operates under.",
+      text: "Our professionals follow strict confidentiality practices, HIPAA-aware workflows, and secure data handling. We are not a covered entity, but we train every placement to meet your compliance expectations.",
     },
     notFound: {
       title: "Page not found",
@@ -91,7 +91,7 @@ export const site = {
     },
     footer: {
       tagline: "Remote legal and operations staffing you can trust",
-      description: "We connect law firms and service-based businesses with highly skilled remote professionals ready to integrate into your team.",
+      description: "We help law firms and service teams hire vetted remote professionals who integrate fast.",
       pagesLabel: "Pages",
       servicesLabel: "Services",
       contactLabel: "Contact",
@@ -102,11 +102,11 @@ export const site = {
     pages: {
       services: {
         title: "Services",
-        subtitle: "Specialized staffing solutions for legal and service-based businesses.",
+        subtitle: "Staffing support for legal and service-based teams.",
       },
       about: {
         title: "About Us",
-        subtitle: "Built by legal professionals, for legal professionals.",
+        subtitle: "Built by legal operators who understand law firm workflows.",
         storyLabel: "Who we are",
         storyHeading: "More than recruiters",
         missionLabel: "Our Mission",
@@ -120,10 +120,10 @@ export const site = {
           { value: "24h", label: "Average candidate turnaround" },
         ],
       },
-      process: { title: "Our Process", intro: "Here is how we work with you from first contact to ongoing support." },
+      process: { title: "Our Process", intro: "How we move from intake to long-term support." },
       requestQuote: {
         title: "Request a Quote",
-        subtitle: "Tell us about your staffing needs and we will get back to you within one business day.",
+        subtitle: "Share your hiring needs and we will reply within one business day.",
         formHeading: "Your staffing needs",
         fields: {
           name: "Full name",
@@ -152,14 +152,14 @@ export const site = {
       },
       contact: {
         title: "Contact",
-        subtitle: "Get in touch to discuss your staffing needs.",
-        intro: "Get in touch to discuss your staffing needs.",
+        subtitle: "Talk with our team about your hiring goals.",
+        intro: "Talk with our team about your hiring goals.",
         cardTitle: "Contact details",
         reachLabel: "Reach out directly",
         reachSubhead: "We typically respond within one business day.",
         connectLabel: "Connect with us",
         quoteCardHeading: "Ready to get started?",
-        quoteCardText: "Fill out our quick form and we will match you with the right talent for your team.",
+        quoteCardText: "Send a quick request and we will match you with talent that fits your team.",
         quoteCardCta: "Request a Quote",
       },
     },
@@ -178,34 +178,34 @@ export const site = {
       colorsNote: "Blue, red, black",
     },
     description:
-      "Legal Mate Staffing is your trusted partner for remote legal and operational staffing. We connect law firms and service-based businesses with highly skilled professionals, including case managers, paralegals, intake specialists, legal assistants, collectors, and customer service representatives.",
+      "Legal Mate Staffing connects law firms and service businesses with vetted remote professionals, including case managers, paralegals, intake specialists, legal assistants, collections staff, and customer service reps.",
     mission:
-      "To connect businesses with reliable, skilled, and adaptable talent by providing staffing solutions that support operational efficiency, quality service, and long-term growth across multiple industries.",
+      "Connect businesses with reliable talent that improves operations and service quality.",
     vision:
-      "To become a trusted staffing partner for companies seeking dependable talent, recognized for our flexibility, quality standards, and people-first approach in an evolving global workforce.",
+      "Be the staffing partner teams trust for dependable talent, flexible delivery, and consistent quality.",
     values: [
-      { icon: "handshake", title: "Partnership", text: "We work as an extension of our clients\u2019 teams, aligning talent with real operational needs and business goals." },
-      { icon: "star", title: "Quality", text: "We prioritize skills, accountability, and performance, ensuring our talent delivers consistent and measurable results." },
+      { icon: "handshake", title: "Partnership", text: "We work as an extension of your team and align talent to real operational needs." },
+      { icon: "star", title: "Quality", text: "We prioritize skills, accountability, and measurable performance." },
       { icon: "refresh", title: "Adaptability", text: "We embrace change and evolve with our clients, industries, and workforce demands." },
       { icon: "shield", title: "Professional Integrity", text: "We operate with transparency, responsibility, and respect in every placement and relationship." },
-      { icon: "heart", title: "People First Mindset", text: "We value the individuals behind every role, fostering fair opportunities, trust, and professional development." },
-      { icon: "rocket", title: "Growth and Impact", text: "We aim to create sustainable growth for our clients while empowering talent to build stable, long-term careers." },
+      { icon: "heart", title: "People First Mindset", text: "We value the people behind each role and support fair, professional growth." },
+      { icon: "rocket", title: "Growth and Impact", text: "We focus on sustainable client growth and stable career paths for talent." },
     ],
     keyMessage:
-      "At Legal Mate Staffing, we are more than recruiters. We are former legal professionals with over five years of experience working directly with U.S.-based law firms. Because we know the business from the ground up, we apply precise filters and rigorous selection processes to match each client with the most qualified, reliable, and culturally aligned talent.",
+      "We are former legal operators, not generic recruiters. That experience helps us screen precisely and place reliable talent that fits your team and workflow.",
     differentiators: [
       {
         icon: "briefcase",
         title: "Real experience in the legal industry",
-        text: "Our founding team has directly worked as case managers, intake specialists, legal assistants, paralegals, customer service representatives, and collections agents, so we understand law firm operations and place talent that fits.",
+        text: "Our founders have worked in law firm operations, so we place talent that fits real day-to-day workflows.",
       },
-      { icon: "target", title: "Specialization in legal and service industries", text: "We are specialized in legal and service-sector talent with a deep understanding of operational dynamics and standards of excellence." },
-      { icon: "globe", title: "Bilingual and culturally aligned talent", text: "We provide bilingual English and Spanish professionals trained to work with U.S.-based teams and clients." },
-      { icon: "shield", title: "Rigorous selection process", text: "Technical evaluations, specialized interviews, and experience verification to ensure candidates are prepared from day one." },
-      { icon: "chart", title: "Cost optimization without sacrificing quality", text: "Highly qualified remote talent while maintaining performance and accountability." },
-      { icon: "headset", title: "Continuous support and follow up", text: "Ongoing monitoring, feedback, and fast replacements when needed to ensure long-term stability." },
-      { icon: "layers", title: "Scalability and flexibility", text: "We adapt from hiring one professional to building complete remote teams." },
-      { icon: "handshake", title: "Long term partnerships", text: "Strategic partnerships based on trust, transparency, consistent results, and mutual growth." },
+      { icon: "target", title: "Specialization in legal and service industries", text: "We focus on legal and service-sector roles with clear operational standards." },
+      { icon: "globe", title: "Bilingual and culturally aligned talent", text: "We provide English-Spanish professionals trained for U.S.-based teams." },
+      { icon: "shield", title: "Rigorous selection process", text: "Technical reviews, role interviews, and verification before every shortlist." },
+      { icon: "chart", title: "Cost optimization without sacrificing quality", text: "Lower staffing costs while maintaining accountability and output." },
+      { icon: "headset", title: "Continuous support and follow up", text: "We stay involved with feedback, monitoring, and replacements when needed." },
+      { icon: "layers", title: "Scalability and flexibility", text: "Scale from one hire to full remote teams as needs change." },
+      { icon: "handshake", title: "Long term partnerships", text: "We build durable partnerships through transparency and reliable delivery." },
     ],
     services: [
       {
@@ -219,7 +219,7 @@ export const site = {
           "Medical Intake Assistants",
           "Medical Records Clerks",
         ],
-        blurb: "Highly qualified remote professionals trained to integrate into your workflows and case management systems.",
+        blurb: "Remote legal professionals ready to work inside your existing workflows and case systems.",
       },
       {
         category: "Customer Service and Operations Staffing",
@@ -229,15 +229,15 @@ export const site = {
           "Administrative Support",
           "Virtual Assistant",
         ],
-        blurb: "Experienced professionals to improve client satisfaction, retention, and operational efficiency.",
+        blurb: "Experienced operations talent to improve service quality and team efficiency.",
       },
     ],
     process: [
-      { icon: "phone", step: "Step 1", title: "Initial Contact", text: "Clients reach out via website form, email, WhatsApp, or phone. We respond within one business day to schedule an introductory call." },
-      { icon: "search", step: "Step 2", title: "Needs Assessment", text: "We analyze staffing needs, workflows, required skills, and business objectives to build a precise candidate profile." },
-      { icon: "filter", step: "Step 3", title: "Candidate Selection", text: "We source, evaluate, and present pre-qualified candidates through technical assessments, interviews, and background checks." },
-      { icon: "thumbsUp", step: "Step 4", title: "Interview and Approval", text: "You interview selected candidates and approve the best fit. We coordinate scheduling and handle logistics." },
-      { icon: "chart", step: "Step 5", title: "Ongoing Support", text: "Continuous follow-up and performance monitoring through QBRs, using employer-provided metrics to ensure long-term success." },
+      { icon: "phone", step: "Step 1", title: "Initial Contact", text: "You reach out by form, email, WhatsApp, or phone. We reply within one business day." },
+      { icon: "search", step: "Step 2", title: "Needs Assessment", text: "We map role requirements, workflows, and outcomes to define the candidate profile." },
+      { icon: "filter", step: "Step 3", title: "Candidate Selection", text: "We source and screen candidates, then share a pre-qualified shortlist." },
+      { icon: "thumbsUp", step: "Step 4", title: "Interview and Approval", text: "You interview finalists and approve the best fit while we coordinate logistics." },
+      { icon: "chart", step: "Step 5", title: "Ongoing Support", text: "We provide follow-up, performance monitoring, and replacement support as needed." },
     ],
     audience: {
       lawFirms: ["Personal Injury Law Firms", "Immigration Law Firms", "Civil Law Firms", "Family Law Firms", "Collections Law Firms"],
@@ -249,14 +249,14 @@ export const site = {
         name: "Andr\u00e9 Rodriguez Leones",
         title: "Co-Founder, Talent Development",
         bio:
-          "Results-driven legal operations professional with over five years of experience supporting U.S.-based law firms in case management, medical records, billing, and operational performance. Leads KPI initiatives and workflow improvements, with experience using Power BI, SQL, R, and Excel to optimize performance and decision-making.",
+          "Legal operations professional with 5+ years supporting U.S. law firms in case management, medical records, billing, and workflow performance. Leads KPI and reporting initiatives using tools like Power BI, SQL, R, and Excel.",
       },
       {
         initials: "HS",
         name: "Henry Andr\u00e9s S\u00e1nchez Mart\u00ednez",
         title: "Co-Founder, Operations",
         bio:
-          "Colombian attorney with over four years of experience working remotely with U.S.-based organizations in legal, administrative, and customer service roles. Experienced across intake, investigation, drafting, demand preparation, medical record analysis, and insurance coordination, with additional experience in collections and high-volume customer service environments.",
+          "Colombian attorney with 4+ years supporting U.S.-based teams across legal operations, administration, and customer service. Background includes intake, investigation, drafting, demand prep, medical record review, insurance coordination, and collections.",
       },
     ],
     references: [

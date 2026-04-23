@@ -57,24 +57,3 @@ body {
   animation: hero-fade-in 0.6s ease-out 0.15s both;
 }
 
-@keyframes hero-float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(4px, -12px); }
-}
-
-@keyframes hero-float-alt {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-3px, -12px); }
-}
-
-.hero-float-card-1 {
-  animation: hero-float 6.5s ease-in-out 0s infinite;
-}
-
-.hero-float-card-2 {
-  animation: hero-float-alt 7.5s ease-in-out 2s infinite;
-}
-
-.hero-float-card-3 {
-  animation: hero-float 8s ease-in-out 4s infinite;
-}

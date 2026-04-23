@@ -1,6 +1,7 @@
 import { site } from "@/content/siteContent";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconBadge } from "@/components/ui/IconBadge";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { iconMap, ArrowDownIcon } from "@/components/icons";
 
 export function ProcessStepsSection() {
@@ -13,6 +14,15 @@ export function ProcessStepsSection() {
           label={sections.processLabel}
           heading={sections.process}
         />
+
+        <div className="mx-auto mt-10 max-w-3xl">
+          <ImagePlaceholder
+            title="Process workflow visual"
+            assetPath="/images/process/workflow-overview.jpg"
+            ratio="wide"
+            note="Use a simple process diagram or team workflow illustration."
+          />
+        </div>
 
         <div className="relative mt-16">
           {/* Timeline spine */}

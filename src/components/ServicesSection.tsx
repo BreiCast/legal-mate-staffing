@@ -1,6 +1,7 @@
 import { site } from "@/content/siteContent";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconBadge } from "@/components/ui/IconBadge";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { ScalesIcon, ChatIcon } from "@/components/icons";
 
 const categoryIcons = [ScalesIcon, ChatIcon];
@@ -15,6 +16,15 @@ export function ServicesSection() {
           label={sections.servicesLabel}
           heading={sections.services}
         />
+
+        <div className="mx-auto mt-10 max-w-3xl">
+          <ImagePlaceholder
+            title="Services overview visual"
+            assetPath="/images/services/services-overview.jpg"
+            ratio="wide"
+            note="Use a clean image that communicates legal and operations support."
+          />
+        </div>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {services.map((category, idx) => {

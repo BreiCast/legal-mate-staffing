@@ -1,6 +1,7 @@
 import { site } from "@/content/siteContent";
 import { PageHero } from "@/components/ui/PageHero";
 import { IconBadge } from "@/components/ui/IconBadge";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { iconMap } from "@/components/icons";
 import { QuoteForm } from "@/components/QuoteForm";
 
@@ -33,7 +34,13 @@ export default function RequestQuotePage() {
             {/* Trust sidebar (1/3 width) */}
             <aside className="lg:col-span-1">
               <div className="sticky top-24 rounded-2xl border border-gray-200 bg-gray-50 p-6 sm:p-8">
-                <h3 className="text-sm font-semibold uppercase tracking-widest text-[var(--brand-blue)]">
+                <ImagePlaceholder
+                  title="Trust and support visual"
+                  assetPath="/images/request-quote/trust-support.jpg"
+                  ratio="video"
+                  note="Use a visual showing communication, onboarding, or support."
+                />
+                <h3 className="mt-6 text-sm font-semibold uppercase tracking-widest text-[var(--brand-blue)]">
                   {pg.trustHeading}
                 </h3>
                 <div className="mt-6 space-y-5">
