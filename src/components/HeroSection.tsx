@@ -70,6 +70,7 @@ export function HeroSection() {
             <ImagePlaceholder
               title="Hero team visual"
               assetPath="/images/home/hero-team.jpg"
+              src="/images/home/hero-team.jpg"
               ratio="wide"
               note="Use a real team or workflow image that reflects legal operations staffing."
             />
