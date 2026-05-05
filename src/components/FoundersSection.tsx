@@ -1,8 +1,9 @@
 import { site } from "@/content/siteContent";
+import Image from "next/image";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function FoundersSection() {
-  const { sections, founders } = site;
+  const { sections, founders, images } = site;
 
   return (
     <section className="bg-gray-50 px-4 py-16 sm:px-6 sm:py-20">
@@ -13,7 +14,7 @@ export function FoundersSection() {
         />
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2">
-          {founders.map((founder) => (
+          {founders.map((founder, idx) => (
             <div
               key={founder.name}
               className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5"
@@ -23,9 +24,15 @@ export function FoundersSection() {
 
               <div className="p-8">
                 <div className="flex items-start gap-5">
-                  {/* Avatar with initials */}
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--brand-blue)] to-[var(--brand-blue)]/80 text-xl font-bold text-white shadow-md shadow-[var(--brand-blue)]/25 transition-transform duration-300 group-hover:scale-105">
-                    {founder.initials}
+                  {/* Founder headshot placeholder */}
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl shadow-md shadow-[var(--brand-blue)]/15 transition-transform duration-300 group-hover:scale-105">
+                    <Image
+                      src={(images.founders[idx] ?? images.founders[0]).src}
+                      alt={(images.founders[idx] ?? images.founders[0]).alt}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-[var(--brand-black)]">

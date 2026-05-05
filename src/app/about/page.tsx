@@ -1,4 +1,5 @@
 import { site } from "@/content/siteContent";
+import Image from "next/image";
 import { FoundersSection } from "@/components/FoundersSection";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -17,7 +18,12 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero banner */}
-      <PageHero label={aboutPage.title} heading={aboutPage.subtitle} />
+      <PageHero
+        label={aboutPage.title}
+        heading={aboutPage.subtitle}
+        imageSrc={site.images.pageHero.src}
+        imageAlt={site.images.pageHero.alt}
+      />
 
       {/* Story section */}
       <section className="px-4 py-16 sm:px-6 sm:py-20">
@@ -36,34 +42,45 @@ export default function AboutPage() {
                 {keyMessage}
               </p>
             </div>
+            <div className="space-y-4">
+              <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+                <Image
+                  src={site.images.aboutStory.src}
+                  alt={site.images.aboutStory.alt}
+                  fill
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
 
-            {/* Stat cards */}
-            <div className="grid grid-cols-2 gap-4">
-              {aboutPage.stats.map((stat, idx) => {
-                const colors = [
-                  "from-[var(--brand-blue)]/5",
-                  "from-[var(--brand-red)]/5",
-                  "from-gray-100",
-                  "from-[var(--brand-blue)]/5 to-[var(--brand-red)]/5",
-                ];
-                const textColors = [
-                  "text-[var(--brand-blue)]",
-                  "text-[var(--brand-red)]",
-                  "text-[var(--brand-black)]",
-                  "text-[var(--brand-blue)]",
-                ];
-                return (
-                  <div
-                    key={stat.value}
-                    className={`rounded-2xl border border-gray-200 bg-gradient-to-br ${colors[idx] ?? "from-gray-100"} to-transparent p-6 text-center`}
-                  >
-                    <p className={`text-3xl font-bold ${textColors[idx] ?? "text-[var(--brand-black)]"}`}>
-                      {stat.value}
-                    </p>
-                    <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
-                  </div>
-                );
-              })}
+              {/* Stat cards */}
+              <div className="grid grid-cols-2 gap-4">
+                {aboutPage.stats.map((stat, idx) => {
+                  const colors = [
+                    "from-[var(--brand-blue)]/5",
+                    "from-[var(--brand-red)]/5",
+                    "from-gray-100",
+                    "from-[var(--brand-blue)]/5 to-[var(--brand-red)]/5",
+                  ];
+                  const textColors = [
+                    "text-[var(--brand-blue)]",
+                    "text-[var(--brand-red)]",
+                    "text-[var(--brand-black)]",
+                    "text-[var(--brand-blue)]",
+                  ];
+                  return (
+                    <div
+                      key={stat.value}
+                      className={`rounded-2xl border border-gray-200 bg-gradient-to-br ${colors[idx] ?? "from-gray-100"} to-transparent p-6 text-center`}
+                    >
+                      <p className={`text-3xl font-bold ${textColors[idx] ?? "text-[var(--brand-black)]"}`}>
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -75,6 +92,15 @@ export default function AboutPage() {
           <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5">
             <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[var(--brand-blue)]/5 transition-transform duration-500 group-hover:scale-150" />
             <div className="relative">
+              <div className="relative mb-4 h-36 overflow-hidden rounded-xl border border-gray-100">
+                <Image
+                  src={site.images.aboutMission.src}
+                  alt={site.images.aboutMission.alt}
+                  fill
+                  sizes="(min-width: 640px) 30vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
               <IconBadge size="sm">
                 <BarChartIcon className="h-5 w-5" />
               </IconBadge>
@@ -85,6 +111,15 @@ export default function AboutPage() {
           <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5">
             <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[var(--brand-red)]/5 transition-transform duration-500 group-hover:scale-150" />
             <div className="relative">
+              <div className="relative mb-4 h-36 overflow-hidden rounded-xl border border-gray-100">
+                <Image
+                  src={site.images.aboutVision.src}
+                  alt={site.images.aboutVision.alt}
+                  fill
+                  sizes="(min-width: 640px) 30vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
               <IconBadge size="sm">
                 <EyeIcon className="h-5 w-5" />
               </IconBadge>

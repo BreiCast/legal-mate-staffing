@@ -1,4 +1,5 @@
 import { site } from "@/content/siteContent";
+import Image from "next/image";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { ScalesIcon, ChatIcon } from "@/components/icons";
@@ -6,7 +7,7 @@ import { ScalesIcon, ChatIcon } from "@/components/icons";
 const categoryIcons = [ScalesIcon, ChatIcon];
 
 export function ServicesSection() {
-  const { sections, services } = site;
+  const { sections, services, images } = site;
 
   return (
     <section className="bg-gray-50 px-4 py-16 sm:px-6 sm:py-20">
@@ -26,6 +27,15 @@ export function ServicesSection() {
               >
                 {/* Top gradient bar */}
                 <div className="h-1.5 bg-gradient-to-r from-[var(--brand-blue)] to-[var(--brand-red)]" />
+                <div className="relative h-44 overflow-hidden border-b border-gray-100">
+                  <Image
+                    src={(images.services[idx] ?? images.services[0]).src}
+                    alt={(images.services[idx] ?? images.services[0]).alt}
+                    fill
+                    sizes="(min-width: 1024px) 30vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
 
                 <div className="p-8">
                   <div className="flex items-start gap-4">

@@ -1,47 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0b0b0f;
-  --brand-blue: #05a3ea;
-  --brand-blue-light: #2eb0f5;
-  --brand-blue-dark: #0b5890;
-  --brand-red: #ed222f;
-  --brand-red-light: #f04a52;
-  --brand-red-dark: #640e19;
-  --brand-black: #0b0b0f;
-  --brand-gray: #3f454d;
-  --brand-gray-light: #e6e7e8;
-  --border: #e6e7e8;
+  /* Editorial Trust palette */
+  --ink: #0a0a0a;
+  --paper: #fafaf7;
+  --surface: #ffffff;
+  --line: #e8e6df;
+  --line-strong: #d6d3ca;
+  --muted: #6b6f76;
+  --muted-strong: #3f454d;
+  --accent: #1d4ed8;
+  --accent-soft: #eef2ff;
+  --signal: #b91c1c;
+
+  /* Backward-compatible aliases — let untouched legacy pages
+     adopt the new palette without per-file edits. */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --border: var(--line);
+  --brand-black: var(--ink);
+  --brand-gray: var(--muted-strong);
+  --brand-gray-light: var(--line);
+  --brand-blue: var(--accent);
+  --brand-blue-light: #2563eb;
+  --brand-blue-dark: #1e40af;
+  --brand-red: var(--signal);
+  --brand-red-light: #dc2626;
+  --brand-red-dark: #7f1d1d;
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-brand-blue: var(--brand-blue);
-  --color-brand-blue-light: var(--brand-blue-light);
-  --color-brand-blue-dark: var(--brand-blue-dark);
-  --color-brand-red: var(--brand-red);
-  --color-brand-red-light: var(--brand-red-light);
-  --color-brand-red-dark: var(--brand-red-dark);
-  --color-brand-black: var(--brand-black);
-  --color-brand-gray: var(--brand-gray);
-  --color-brand-gray-light: var(--brand-gray-light);
-  --color-border: var(--border);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, monospace;
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-signal: var(--signal);
+
+  /* Legacy aliases for untouched pages */
+  --color-brand-black: var(--ink);
+  --color-brand-gray: var(--muted-strong);
+  --color-brand-gray-light: var(--line);
+  --color-brand-blue: var(--accent);
+  --color-brand-blue-light: #2563eb;
+  --color-brand-blue-dark: #1e40af;
+  --color-brand-red: var(--signal);
+  --color-brand-red-light: #dc2626;
+  --color-brand-red-dark: #7f1d1d;
+  --color-border: var(--line);
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: var(--font-instrument-serif), "Iowan Old Style", Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
 }
 
-@keyframes hero-fade-in {
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@keyframes headline-reveal {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -49,32 +91,32 @@ body {
   }
 }
 
-.hero-animate-in {
-  animation: hero-fade-in 0.6s ease-out both;
+.headline-line {
+  animation: headline-reveal 0.7s var(--ease-out-quart) both;
 }
 
-.hero-animate-in-delay {
-  animation: hero-fade-in 0.6s ease-out 0.15s both;
+@keyframes quote-mark-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-@keyframes hero-float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(4px, -12px); }
+.quote-mark-in {
+  animation: quote-mark-in 0.5s var(--ease-out-quart) both;
 }
 
-@keyframes hero-float-alt {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-3px, -12px); }
-}
-
-.hero-float-card-1 {
-  animation: hero-float 6.5s ease-in-out 0s infinite;
-}
-
-.hero-float-card-2 {
-  animation: hero-float-alt 7.5s ease-in-out 2s infinite;
-}
-
-.hero-float-card-3 {
-  animation: hero-float 8s ease-in-out 4s infinite;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

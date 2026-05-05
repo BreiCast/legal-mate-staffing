@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/content/siteContent";
 import { CheckIcon } from "@/components/icons";
 
@@ -8,6 +9,7 @@ export function HeroSection() {
     ? `https://wa.me/${contact.whatsapp.replace(/\D/g, "")}`
     : hero.cta.whatsapp.href;
   const bookCallHref = contact.bookingUrl || hero.cta.bookCall.href;
+  const heroImage = site.images.heroHome;
 
   return (
     <section
@@ -67,6 +69,14 @@ export function HeroSection() {
           {/* Right column: floating cards on gradient panel */}
           <div className="relative hidden lg:block hero-animate-in-delay" aria-hidden>
             <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-[var(--brand-blue)]/10 via-gray-50/90 to-[var(--brand-red)]/5 shadow-xl transition-shadow hover:shadow-2xl">
+              <Image
+                src={heroImage.src}
+                alt={heroImage.alt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover opacity-25"
+              />
               <div className="absolute inset-5 flex flex-col justify-center gap-4 pointer-events-none">
                 <div className="hero-float-card-1 rounded-xl border border-[var(--brand-blue)]/15 bg-white/95 px-5 py-4 shadow-lg backdrop-blur-sm transition-shadow hover:shadow-xl hover:scale-[1.02] pointer-events-auto will-change-transform">
                   <p className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-blue)]">Active placements</p>

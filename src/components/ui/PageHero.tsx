@@ -1,11 +1,27 @@
+import Image from "next/image";
+import { site } from "@/content/siteContent";
+
 interface PageHeroProps {
   label: string;
   heading: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
-export function PageHero({ label, heading }: PageHeroProps) {
+export function PageHero({ label, heading, imageSrc, imageAlt }: PageHeroProps) {
+  const heroImageSrc = imageSrc || site.images.pageHero.src;
+  const heroImageAlt = imageAlt || site.images.pageHero.alt;
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[var(--brand-blue)] via-[var(--brand-blue)]/90 to-[var(--brand-black)] px-4 py-20 sm:px-6 sm:py-28">
+      <Image
+        src={heroImageSrc}
+        alt={heroImageAlt}
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover opacity-20"
+      />
       {/* Decorative blurred orbs */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white blur-3xl" />

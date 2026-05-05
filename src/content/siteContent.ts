@@ -8,17 +8,118 @@ export const site = {
     ],
     hero: {
       badge: "Trusted by law firms nationwide",
+      kicker: "Now placing case managers, paralegals & intake teams",
       headline: "Remote legal and operations staffing you can trust",
+      headlineEditorial: {
+        lines: [
+          "Remote legal teams,",
+          { text: "built like your", italic: false },
+          { text: "best in-house hire.", italic: true },
+        ],
+      },
       subheadline: "We connect law firms and service-based businesses with highly skilled professionals\u2014ready to integrate into your team.",
+      subheadlineEditorial:
+        "Bilingual case managers, paralegals, and intake specialists\u2014vetted by former legal operations professionals and trained on U.S. firm workflows.",
+      metaStrip: [
+        "5+ yrs U.S. legal workflows",
+        "Bilingual EN / ES",
+        "24h candidate turnaround",
+      ],
       trustPoints: [
         "Rigorous vetting and legal industry experience",
         "Bilingual talent aligned with U.S. workflows",
         "Scalable from one hire to full remote teams",
       ],
+      sampleBrief: {
+        label: "Sample candidate brief",
+        name: "M. Garc\u00eda",
+        role: "Senior Case Manager",
+        availability: "Available in 5 days",
+        languages: "English / Spanish",
+        location: "Bogot\u00e1, COL \u00b7 EST hours",
+        experience: "4 yrs · Personal Injury",
+        tools: ["Filevine", "Litify", "MyCase"],
+      },
       cta: {
         requestQuote: { label: "Request a Quote", href: "/request-quote" },
         bookCall: { label: "Book a Call", href: "#" },
         whatsapp: { label: "WhatsApp", href: "#" },
+      },
+    },
+    images: {
+      heroHome: {
+        src: "/images/hero-home.jpg",
+        alt: "Legal professionals collaborating in a modern office",
+      },
+      pageHero: {
+        src: "/images/page-hero.jpg",
+        alt: "Professional remote team collaboration setup",
+      },
+      services: [
+        {
+          src: "/images/service-legal.jpg",
+          alt: "Legal team reviewing case documents",
+        },
+        {
+          src: "/images/service-ops.jpg",
+          alt: "Operations support professionals at workstations",
+        },
+      ],
+      founders: [
+        {
+          src: "/images/founder-1.jpg",
+          alt: "Founder portrait placeholder",
+        },
+        {
+          src: "/images/founder-2.jpg",
+          alt: "Co-founder portrait placeholder",
+        },
+      ],
+      process: [
+        {
+          src: "/images/process-1.jpg",
+          alt: "Initial consultation call setup",
+        },
+        {
+          src: "/images/process-2.jpg",
+          alt: "Staffing requirements planning session",
+        },
+        {
+          src: "/images/process-3.jpg",
+          alt: "Candidate evaluation and selection workflow",
+        },
+        {
+          src: "/images/process-4.jpg",
+          alt: "Client interview and approval process",
+        },
+        {
+          src: "/images/process-5.jpg",
+          alt: "Ongoing support and performance follow-up",
+        },
+      ],
+      differentiator: {
+        src: "/images/differentiator-default.jpg",
+        alt: "High-performance legal support visual",
+      },
+      aboutStory: {
+        src: "/images/about-story.jpg",
+        alt: "Team discussion in a legal operations setting",
+      },
+      aboutMission: {
+        src: "/images/about-mission.jpg",
+        alt: "Mission-focused team planning board",
+      },
+      aboutVision: {
+        src: "/images/about-vision.jpg",
+        alt: "Forward-looking strategy session",
+      },
+      contactBanner: {
+        src: "/images/contact-banner.jpg",
+        alt: "Customer support professionals ready to assist",
+      },
+      quoteSidebar: {
+        src: "/images/quote-sidebar.jpg",
+        alt: "Trusted remote staffing professionals",
       },
     },
     sections: {
@@ -32,6 +133,34 @@ export const site = {
       founders: "Our Founders",
       finalCta: "Ready to Get Started?",
       finalCtaSubtext: "Connect with us to discuss your staffing needs. We\u2019re here to help you scale with the right talent.",
+    },
+    editorial: {
+      services: {
+        eyebrow: "01 \u00b7 What we staff",
+        heading: "Two practices, one standard.",
+        body: "We focus on the roles where our team has lived experience\u2014so we can vet for nuance, not keywords.",
+      },
+      process: {
+        eyebrow: "02 \u00b7 How it works",
+        heading: "From first call to first day in five steps.",
+        body: "Most placements close inside two weeks. Each step has a clear deliverable on our side and a single decision on yours.",
+      },
+      founders: {
+        eyebrow: "03 \u00b7 The team",
+        heading: "Real legal operators behind every placement.",
+      },
+      cta: {
+        eyebrow: "Start a search",
+        heading: "Tell us about the role.",
+        body: "We\u2019ll come back inside one business day with a shortlist scoped to your firm.",
+      },
+      faq: {
+        eyebrow: "Common questions",
+        heading: "Answers before you ask.",
+      },
+      trustBar: {
+        label: "Working with",
+      },
     },
     trustedBy: {
       label: "Trusted by forward-thinking law firms and service companies",
@@ -193,6 +322,37 @@ export const site = {
     ],
     keyMessage:
       "At Legal Mate Staffing, we are more than recruiters. We are former legal professionals with over five years of experience working directly with U.S.-based law firms. Because we know the business from the ground up, we apply precise filters and rigorous selection processes to match each client with the most qualified, reliable, and culturally aligned talent.",
+    bento: {
+      eyebrow: "Why firms pick us",
+      heading: "Built by legal operators, not recruiters.",
+      tiles: [
+        {
+          size: "lg",
+          icon: "briefcase",
+          title: "We sat in your seats first.",
+          text: "Our founding team worked as case managers, intake specialists, and paralegals inside U.S. firms before starting Legal Mate. We hire for the work, not the resume.",
+          stat: { value: "5+ yrs", label: "Inside U.S. legal operations" },
+        },
+        {
+          size: "sm",
+          icon: "globe",
+          title: "Bilingual & culturally aligned",
+          text: "Every placement is fluent in English and Spanish, trained on EST hours and U.S. communication norms.",
+        },
+        {
+          size: "sm",
+          icon: "shield",
+          title: "Rigorous selection",
+          text: "Technical evaluation, role-specific interviews, and background checks before you ever see a r\u00e9sum\u00e9.",
+        },
+        {
+          size: "sm",
+          icon: "headset",
+          title: "Ongoing support",
+          text: "Performance reviews, fast replacements, and a single point of contact for the life of the placement.",
+        },
+      ],
+    },
     differentiators: [
       {
         icon: "briefcase",
@@ -242,6 +402,10 @@ export const site = {
     audience: {
       lawFirms: ["Personal Injury Law Firms", "Immigration Law Firms", "Civil Law Firms", "Family Law Firms", "Collections Law Firms"],
       serviceCompanies: ["Collections Agencies", "Customer Support Operations", "Administrative Service Providers", "Companies using Virtual Assistants and Remote Operations Support"],
+    },
+    foundersQuote: {
+      text: "We started Legal Mate because we sat in those seats. We know what a great case manager looks like at 4:47pm on a Friday\u2014and what a bad hire costs the firm by Monday.",
+      attribution: "Andr\u00e9 & Henry, Co-Founders",
     },
     founders: [
       {
