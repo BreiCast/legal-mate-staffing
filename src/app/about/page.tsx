@@ -4,6 +4,8 @@ import { FoundersSection } from "@/components/FoundersSection";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconBadge } from "@/components/ui/IconBadge";
+import { Container } from "@/components/layout/Container";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { iconMap, BarChartIcon, EyeIcon } from "@/components/icons";
 
 export const metadata = {
@@ -17,159 +19,122 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Hero banner */}
       <PageHero
         label={aboutPage.title}
         heading={aboutPage.subtitle}
-        imageSrc={site.images.pageHero.src}
-        imageAlt={site.images.pageHero.alt}
       />
 
-      {/* Story section */}
-      <section className="px-4 py-16 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-            <div>
-              <SectionHeading
-                label={aboutPage.storyLabel}
-                heading={aboutPage.storyHeading}
-                align="left"
-              />
-              <p className="mt-6 leading-relaxed text-gray-600">
+      {/* Story */}
+      <section className="bg-paper py-24 sm:py-32">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-12 lg:items-start lg:gap-16">
+            <div className="lg:col-span-7">
+              <Eyebrow>{aboutPage.storyLabel}</Eyebrow>
+              <h2 className="mt-5 font-serif text-[32px] leading-[1.1] tracking-[-0.01em] text-ink sm:text-[44px] lg:text-[52px]">
+                {aboutPage.storyHeading}
+              </h2>
+              <p className="mt-7 text-[16px] leading-[1.7] text-muted-strong">
                 {description}
               </p>
-              <p className="mt-4 leading-relaxed text-gray-600">
+              <p className="mt-5 text-[16px] leading-[1.7] text-muted-strong">
                 {keyMessage}
               </p>
             </div>
-            <div className="space-y-4">
-              <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+
+            <div className="space-y-5 lg:col-span-5">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-line bg-surface">
                 <Image
                   src={site.images.aboutStory.src}
                   alt={site.images.aboutStory.alt}
                   fill
-                  sizes="(min-width: 1024px) 45vw, 100vw"
-                  className="object-cover"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover grayscale-[0.15]"
                 />
               </div>
 
-              {/* Stat cards */}
-              <div className="grid grid-cols-2 gap-4">
-                {aboutPage.stats.map((stat, idx) => {
-                  const colors = [
-                    "from-[var(--brand-blue)]/5",
-                    "from-[var(--brand-red)]/5",
-                    "from-gray-100",
-                    "from-[var(--brand-blue)]/5 to-[var(--brand-red)]/5",
-                  ];
-                  const textColors = [
-                    "text-[var(--brand-blue)]",
-                    "text-[var(--brand-red)]",
-                    "text-[var(--brand-black)]",
-                    "text-[var(--brand-blue)]",
-                  ];
-                  return (
-                    <div
-                      key={stat.value}
-                      className={`rounded-2xl border border-gray-200 bg-gradient-to-br ${colors[idx] ?? "from-gray-100"} to-transparent p-6 text-center`}
-                    >
-                      <p className={`text-3xl font-bold ${textColors[idx] ?? "text-[var(--brand-black)]"}`}>
-                        {stat.value}
-                      </p>
-                      <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
-                    </div>
-                  );
-                })}
+              <div className="grid grid-cols-2 gap-3">
+                {aboutPage.stats.map((stat) => (
+                  <div
+                    key={stat.value}
+                    className="rounded-xl border border-line bg-paper p-5"
+                  >
+                    <p className="font-serif text-[28px] leading-none text-ink sm:text-[34px]">
+                      {stat.value}
+                    </p>
+                    <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Mission & Vision */}
-      <section className="bg-gray-50 px-4 py-16 sm:px-6 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-2">
-          <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5">
-            <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[var(--brand-blue)]/5 transition-transform duration-500 group-hover:scale-150" />
-            <div className="relative">
-              <div className="relative mb-4 h-36 overflow-hidden rounded-xl border border-gray-100">
-                <Image
-                  src={site.images.aboutMission.src}
-                  alt={site.images.aboutMission.alt}
-                  fill
-                  sizes="(min-width: 640px) 30vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <IconBadge size="sm">
+      <section className="bg-paper py-24 sm:py-32">
+        <Container>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <article className="group rounded-xl border border-line bg-paper p-8 transition-colors duration-200 hover:border-ink hover:bg-surface sm:p-10">
+              <IconBadge size="md">
                 <BarChartIcon className="h-5 w-5" />
               </IconBadge>
-              <h2 className="mt-4 text-xl font-bold text-[var(--brand-black)]">{aboutPage.missionLabel}</h2>
-              <p className="mt-3 leading-relaxed text-gray-600">{mission}</p>
-            </div>
-          </div>
-          <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5">
-            <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[var(--brand-red)]/5 transition-transform duration-500 group-hover:scale-150" />
-            <div className="relative">
-              <div className="relative mb-4 h-36 overflow-hidden rounded-xl border border-gray-100">
-                <Image
-                  src={site.images.aboutVision.src}
-                  alt={site.images.aboutVision.alt}
-                  fill
-                  sizes="(min-width: 640px) 30vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <IconBadge size="sm">
+              <h2 className="mt-6 font-serif text-[24px] leading-[1.2] text-ink sm:text-[28px]">
+                {aboutPage.missionLabel}
+              </h2>
+              <p className="mt-4 text-[15px] leading-[1.65] text-muted-strong">
+                {mission}
+              </p>
+            </article>
+            <article className="group rounded-xl border border-line bg-paper p-8 transition-colors duration-200 hover:border-ink hover:bg-surface sm:p-10">
+              <IconBadge size="md">
                 <EyeIcon className="h-5 w-5" />
               </IconBadge>
-              <h2 className="mt-4 text-xl font-bold text-[var(--brand-black)]">{aboutPage.visionLabel}</h2>
-              <p className="mt-3 leading-relaxed text-gray-600">{vision}</p>
-            </div>
+              <h2 className="mt-6 font-serif text-[24px] leading-[1.2] text-ink sm:text-[28px]">
+                {aboutPage.visionLabel}
+              </h2>
+              <p className="mt-4 text-[15px] leading-[1.65] text-muted-strong">
+                {vision}
+              </p>
+            </article>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Values */}
-      <section className="px-4 py-16 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-6xl">
+      <section className="bg-paper py-24 sm:py-32">
+        <Container>
           <SectionHeading
             label={aboutPage.valuesSubhead}
             heading={aboutPage.valuesLabel}
+            align="left"
           />
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((v) => {
               const Icon = iconMap[v.icon] ?? iconMap.star;
               return (
-                <div
+                <article
                   key={v.title}
-                  className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-blue)]/30 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5"
+                  className="group rounded-xl border border-line bg-paper p-7 transition-colors duration-200 hover:border-ink hover:bg-surface"
                 >
-                  {/* Gradient orb */}
-                  <div className="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-gradient-to-br from-[var(--brand-blue)]/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                  <div className="relative mb-4">
-                    <IconBadge>
-                      <Icon />
-                    </IconBadge>
-                  </div>
-                  <h3 className="relative font-semibold text-[var(--brand-black)] transition-colors duration-200 group-hover:text-[var(--brand-blue)]">
+                  <IconBadge size="md">
+                    <Icon className="h-5 w-5" />
+                  </IconBadge>
+                  <h3 className="mt-6 font-serif text-[20px] leading-[1.2] text-ink">
                     {v.title}
                   </h3>
-                  <p className="relative mt-2 text-sm leading-relaxed text-gray-500">
+                  <p className="mt-3 text-[14px] leading-[1.65] text-muted-strong">
                     {v.text}
                   </p>
-                  {/* Bottom accent bar */}
-                  <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-[var(--brand-blue)] to-[var(--brand-red)] transition-all duration-500 group-hover:w-full" />
-                </div>
+                </article>
               );
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Founders */}
       <FoundersSection />
     </>
   );

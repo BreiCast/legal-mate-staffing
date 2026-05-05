@@ -1,42 +1,75 @@
 import Image from "next/image";
-import { site } from "@/content/siteContent";
+import { Container } from "@/components/layout/Container";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Heading } from "@/components/ui/Heading";
 
 interface PageHeroProps {
   label: string;
   heading: string;
+  subtitle?: string;
   imageSrc?: string;
   imageAlt?: string;
+  showImage?: boolean;
 }
 
-export function PageHero({ label, heading, imageSrc, imageAlt }: PageHeroProps) {
-  const heroImageSrc = imageSrc || site.images.pageHero.src;
-  const heroImageAlt = imageAlt || site.images.pageHero.alt;
-
+export function PageHero({
+  label,
+  heading,
+  subtitle,
+  imageSrc,
+  imageAlt,
+  showImage = false,
+}: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--brand-blue)] via-[var(--brand-blue)]/90 to-[var(--brand-black)] px-4 py-20 sm:px-6 sm:py-28">
-      <Image
-        src={heroImageSrc}
-        alt={heroImageAlt}
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover opacity-20"
-      />
-      {/* Decorative blurred orbs */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white blur-3xl" />
-        <div className="absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-[var(--brand-red)] blur-3xl" />
-      </div>
+    <header
+      className="border-b border-line bg-paper"
+      aria-labelledby="page-hero-heading"
+    >
+      <Container>
+        <div
+          className={`grid gap-12 pb-16 pt-16 sm:pb-20 sm:pt-24 lg:pt-28 ${
+            showImage && imageSrc
+              ? "lg:grid-cols-12 lg:items-end lg:gap-16"
+              : ""
+          }`}
+        >
+          <div
+            className={
+              showImage && imageSrc
+                ? "lg:col-span-7"
+                : "max-w-3xl"
+            }
+          >
+            <Eyebrow>{label}</Eyebrow>
+            <Heading
+              as="h1"
+              size="xl"
+              id="page-hero-heading"
+              className="mt-6"
+            >
+              {heading}
+            </Heading>
+            {subtitle && (
+              <p className="mt-6 max-w-2xl text-[17px] leading-[1.55] text-muted-strong sm:text-[18px]">
+                {subtitle}
+              </p>
+            )}
+          </div>
 
-      <div className="relative mx-auto max-w-3xl text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-white/70">
-          {label}
-        </p>
-        <h1 className="mt-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-          {heading}
-        </h1>
-        <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-white/40 to-[var(--brand-red)]" />
-      </div>
-    </section>
+          {showImage && imageSrc && (
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-line bg-surface lg:col-span-5">
+              <Image
+                src={imageSrc}
+                alt={imageAlt ?? ""}
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover grayscale-[0.15]"
+              />
+            </div>
+          )}
+        </div>
+      </Container>
+    </header>
   );
 }

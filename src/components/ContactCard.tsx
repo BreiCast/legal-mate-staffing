@@ -1,16 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
 import { site } from "@/content/siteContent";
+import { ButtonLink } from "@/components/ui/Button";
 import { IconBadge } from "@/components/ui/IconBadge";
-import {
-  PhoneIcon,
-  GlobeIcon,
-  ClockIcon,
-} from "@/components/icons";
-
-/* ------------------------------------------------------------------ */
-/*  Small reusable pieces                                              */
-/* ------------------------------------------------------------------ */
+import { PhoneIcon, GlobeIcon, ClockIcon } from "@/components/icons";
 
 function MailIcon(props: { className?: string }) {
   return (
@@ -45,10 +36,6 @@ function MapPinIcon(props: { className?: string }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Contact method tile                                                */
-/* ------------------------------------------------------------------ */
-
 function ContactTile({
   icon,
   label,
@@ -66,44 +53,30 @@ function ContactTile({
   const hasValue = !!value;
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-blue)]/30 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5">
-      {/* Corner orb */}
-      <div className="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-gradient-to-br from-[var(--brand-blue)]/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-      <div className="relative flex items-start gap-4">
-        <IconBadge size="md">
-          {icon}
-        </IconBadge>
-        <div className="min-w-0 flex-1">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-            {label}
+    <div className="group flex items-start gap-4 rounded-xl border border-line bg-paper p-6 transition-colors duration-200 hover:border-ink hover:bg-surface">
+      <IconBadge size="md">{icon}</IconBadge>
+      <div className="min-w-0 flex-1">
+        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+          {label}
+        </p>
+        {hasValue && href ? (
+          <a
+            href={href}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
+            className="mt-2 block truncate font-serif text-[18px] text-ink transition-colors hover:text-ink/80"
+          >
+            {display}
+          </a>
+        ) : (
+          <p className="mt-2 truncate font-serif text-[18px] italic text-muted">
+            {display}
           </p>
-          {hasValue && href ? (
-            <a
-              href={href}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noopener noreferrer" : undefined}
-              className="mt-1 block truncate text-base font-medium text-[var(--brand-black)] transition group-hover:text-[var(--brand-blue)]"
-            >
-              {display}
-            </a>
-          ) : (
-            <p className="mt-1 text-base font-medium text-gray-400 italic">
-              {display}
-            </p>
-          )}
-        </div>
+        )}
       </div>
-
-      {/* Bottom accent */}
-      <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-[var(--brand-blue)] to-[var(--brand-red)] transition-all duration-500 group-hover:w-full" />
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Social icon link                                                   */
-/* ------------------------------------------------------------------ */
 
 function SocialLink({ platform, url }: { platform: string; url: string }) {
   const labels: Record<string, string> = {
@@ -118,17 +91,13 @@ function SocialLink({ platform, url }: { platform: string; url: string }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-600 transition hover:-translate-y-0.5 hover:border-[var(--brand-blue)]/30 hover:text-[var(--brand-blue)] hover:shadow-sm"
+      className="inline-flex items-center gap-2.5 rounded-md border border-line bg-paper px-4 py-2.5 text-[13px] font-medium text-ink/80 transition-colors hover:border-ink hover:text-ink"
     >
       <GlobeIcon className="h-4 w-4" />
       {labels[platform] ?? platform}
     </a>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Exported full contact section                                      */
-/* ------------------------------------------------------------------ */
 
 export function ContactCard() {
   const { contact, pages, hero } = site;
@@ -141,53 +110,41 @@ export function ContactCard() {
   const socials = Object.entries(contact.social).filter(([, url]) => url);
 
   return (
-    <div className="mx-auto max-w-6xl">
-      {/* Section heading — no gradient bar, hero already has one */}
-      <div className="text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-[var(--brand-blue)]">
+    <div className="mx-auto max-w-5xl">
+      <div>
+        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
           {pg.reachLabel}
         </p>
-        <h2 className="mt-2 text-2xl font-bold text-[var(--brand-black)] sm:text-3xl">
+        <h2 className="mt-5 font-serif text-[28px] leading-[1.15] text-ink sm:text-[36px]">
           {pg.cardTitle}
         </h2>
-        <p className="mx-auto mt-3 max-w-lg text-gray-500">
+        <p className="mt-5 max-w-xl text-[16px] leading-[1.6] text-muted-strong">
           {pg.reachSubhead}
         </p>
       </div>
 
-      <div className="relative mt-10 h-56 overflow-hidden rounded-2xl border border-gray-200">
-        <Image
-          src={site.images.contactBanner.src}
-          alt={site.images.contactBanner.alt}
-          fill
-          sizes="(min-width: 1024px) 60vw, 100vw"
-          className="object-cover"
-        />
-      </div>
-
-      {/* Contact method tiles — 2-column grid for even layout */}
-      <div className="mt-12 grid gap-5 sm:grid-cols-2">
+      <div className="mt-12 grid gap-4 sm:grid-cols-2">
         <ContactTile
-          icon={<MailIcon className="h-6 w-6" />}
+          icon={<MailIcon className="h-5 w-5" />}
           label={labels.email}
           value={contact.email}
           href={contact.email ? `mailto:${contact.email}` : undefined}
         />
         <ContactTile
-          icon={<PhoneIcon />}
+          icon={<PhoneIcon className="h-5 w-5" />}
           label={labels.phone}
           value={contact.phone}
           href={contact.phone ? `tel:${contact.phone}` : undefined}
         />
         <ContactTile
-          icon={<WhatsAppIcon className="h-6 w-6" />}
+          icon={<WhatsAppIcon className="h-5 w-5" />}
           label={labels.whatsapp}
           value={contact.whatsapp}
           href={whatsappHref}
           external
         />
         <ContactTile
-          icon={<CalendarIcon className="h-6 w-6" />}
+          icon={<CalendarIcon className="h-5 w-5" />}
           label={labels.bookCall}
           value={contact.bookingUrl ? labels.bookNow : ""}
           href={contact.bookingUrl || undefined}
@@ -195,27 +152,26 @@ export function ContactCard() {
         />
         {contact.cityCountry && (
           <ContactTile
-            icon={<MapPinIcon className="h-6 w-6" />}
+            icon={<MapPinIcon className="h-5 w-5" />}
             label="Location"
             value={contact.cityCountry}
           />
         )}
         {contact.hours && (
           <ContactTile
-            icon={<ClockIcon />}
+            icon={<ClockIcon className="h-5 w-5" />}
             label="Hours"
             value={contact.hours}
           />
         )}
       </div>
 
-      {/* Social links */}
       {socials.length > 0 && (
-        <div className="mt-12">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400">
+        <div className="mt-14 border-t border-line pt-10">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
             {pg.connectLabel}
           </p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-5 flex flex-wrap items-center gap-3">
             {socials.map(([platform, url]) => (
               <SocialLink key={platform} platform={platform} url={url} />
             ))}
@@ -223,20 +179,26 @@ export function ContactCard() {
         </div>
       )}
 
-      {/* Quote CTA card */}
-      <div className="mt-14 overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-8 text-center sm:p-10">
-        <h3 className="text-xl font-bold text-[var(--brand-black)] sm:text-2xl">
-          {pg.quoteCardHeading}
-        </h3>
-        <p className="mx-auto mt-3 max-w-md text-gray-500">
-          {pg.quoteCardText}
-        </p>
-        <Link
-          href={hero.cta.requestQuote.href}
-          className="mt-6 inline-flex rounded-xl bg-[var(--brand-blue)] px-8 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-[var(--brand-blue-light)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2"
-        >
-          {pg.quoteCardCta}
-        </Link>
+      <div className="mt-16 rounded-xl border border-line bg-paper p-8 sm:p-10">
+        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <div>
+            <h3 className="font-serif text-[22px] leading-[1.2] text-ink sm:text-[26px]">
+              {pg.quoteCardHeading}
+            </h3>
+            <p className="mt-3 max-w-md text-[15px] leading-[1.6] text-muted-strong">
+              {pg.quoteCardText}
+            </p>
+          </div>
+          <ButtonLink
+            href={hero.cta.requestQuote.href}
+            size="lg"
+            variant="primary"
+            withArrow
+            className="shrink-0"
+          >
+            {pg.quoteCardCta}
+          </ButtonLink>
+        </div>
       </div>
     </div>
   );

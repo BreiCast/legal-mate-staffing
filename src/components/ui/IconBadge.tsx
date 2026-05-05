@@ -5,9 +5,9 @@ interface IconBadgeProps {
 }
 
 const sizeMap = {
-  sm: "h-10 w-10 rounded-xl",
-  md: "h-12 w-12 rounded-xl",
-  lg: "h-14 w-14 rounded-2xl",
+  sm: "h-9 w-9 rounded-md",
+  md: "h-10 w-10 rounded-md",
+  lg: "h-11 w-11 rounded-md",
 } as const;
 
 export function IconBadge({
@@ -17,12 +17,12 @@ export function IconBadge({
 }: IconBadgeProps) {
   const base = sizeMap[size];
   const hover = hoverFlip
-    ? "group-hover:bg-[var(--brand-blue)] group-hover:text-white group-hover:shadow-md group-hover:shadow-[var(--brand-blue)]/25"
+    ? "group-hover:border-ink group-hover:text-ink"
     : "";
 
   return (
     <div
-      className={`inline-flex shrink-0 items-center justify-center bg-[var(--brand-blue)]/5 text-[var(--brand-blue)] transition-all duration-300 ${base} ${hover}`}
+      className={`inline-flex shrink-0 items-center justify-center border border-line bg-paper text-ink/70 transition-colors duration-200 ${base} ${hover}`}
     >
       {children}
     </div>

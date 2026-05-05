@@ -1,20 +1,26 @@
-import Link from "next/link";
 import { site } from "@/content/siteContent";
+import { Container } from "@/components/layout/Container";
+import { ButtonLink } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export default function NotFound() {
   const { notFound } = site;
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 py-16">
-      <h1 className="text-2xl font-bold text-[var(--brand-black)] sm:text-3xl">
-        {notFound.title}
-      </h1>
-      <p className="mt-2 text-center text-gray-600">{notFound.message}</p>
-      <Link
-        href="/"
-        className="mt-8 rounded-xl bg-[var(--brand-blue)] px-6 py-3 font-medium text-white transition hover:bg-[var(--brand-blue-light)]"
-      >
-        {notFound.backHome}
-      </Link>
-    </div>
+    <section className="bg-paper py-32 sm:py-40">
+      <Container>
+        <div className="max-w-2xl">
+          <Eyebrow>Error · 404</Eyebrow>
+          <h1 className="mt-6 font-serif text-[40px] leading-[1.05] tracking-[-0.015em] text-ink sm:text-[56px] lg:text-[64px]">
+            {notFound.title}
+          </h1>
+          <p className="mt-6 text-[17px] leading-[1.55] text-muted-strong sm:text-[18px]">
+            {notFound.message}
+          </p>
+          <ButtonLink href="/" size="lg" variant="primary" withArrow className="mt-10">
+            {notFound.backHome}
+          </ButtonLink>
+        </div>
+      </Container>
+    </section>
   );
 }

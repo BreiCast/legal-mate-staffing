@@ -1,5 +1,5 @@
 import { site } from "@/content/siteContent";
-import Image from "next/image";
+import { Container } from "@/components/layout/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { ScalesIcon, ChatIcon } from "@/components/icons";
@@ -7,67 +7,56 @@ import { ScalesIcon, ChatIcon } from "@/components/icons";
 const categoryIcons = [ScalesIcon, ChatIcon];
 
 export function ServicesSection() {
-  const { sections, services, images } = site;
+  const { sections, services } = site;
 
   return (
-    <section className="bg-gray-50 px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto max-w-6xl">
+    <section className="bg-paper py-24 sm:py-32">
+      <Container>
         <SectionHeading
           label={sections.servicesLabel}
           heading={sections.services}
         />
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
+        <div className="mt-14 grid gap-5 lg:grid-cols-2">
           {services.map((category, idx) => {
             const Icon = categoryIcons[idx] ?? ScalesIcon;
             return (
-              <div
+              <article
                 key={category.category}
-                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5"
+                className="group relative rounded-xl border border-line bg-paper p-8 transition-colors duration-200 hover:border-ink hover:bg-surface sm:p-10"
               >
-                {/* Top gradient bar */}
-                <div className="h-1.5 bg-gradient-to-r from-[var(--brand-blue)] to-[var(--brand-red)]" />
-                <div className="relative h-44 overflow-hidden border-b border-gray-100">
-                  <Image
-                    src={(images.services[idx] ?? images.services[0]).src}
-                    alt={(images.services[idx] ?? images.services[0]).alt}
-                    fill
-                    sizes="(min-width: 1024px) 30vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-
-                <div className="p-8">
-                  <div className="flex items-start gap-4">
-                    <IconBadge size="lg">
-                      <Icon className="h-7 w-7" />
-                    </IconBadge>
-                    <div>
-                      <h3 className="text-lg font-bold text-[var(--brand-black)]">
-                        {category.category}
-                      </h3>
-                      <p className="mt-1 text-sm leading-relaxed text-gray-500">
-                        {category.blurb}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-6 grid grid-cols-2 gap-2">
-                    {category.items.map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-center gap-2 rounded-lg bg-gray-50 px-3 py-2 text-sm text-gray-700"
-                      >
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-blue)]" />
-                        {item}
-                      </div>
-                    ))}
+                <div className="flex items-start gap-5">
+                  <IconBadge size="md">
+                    <Icon className="h-5 w-5" />
+                  </IconBadge>
+                  <div className="flex-1">
+                    <h3 className="font-serif text-[24px] leading-[1.2] text-ink sm:text-[28px]">
+                      {category.category}
+                    </h3>
+                    <p className="mt-3 text-[15px] leading-[1.6] text-muted-strong">
+                      {category.blurb}
+                    </p>
                   </div>
                 </div>
-              </div>
+                <ul
+                  className="mt-7 grid grid-cols-1 gap-x-5 gap-y-2 border-t border-line pt-6 text-[14px] text-ink/85 sm:grid-cols-2"
+                  role="list"
+                >
+                  {category.items.map((item) => (
+                    <li key={item} className="flex items-center gap-2.5">
+                      <span
+                        aria-hidden
+                        className="h-1 w-1 shrink-0 rounded-full bg-ink/40"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             );
           })}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

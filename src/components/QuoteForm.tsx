@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { site } from "@/content/siteContent";
+import { ButtonLink, Button } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/icons";
 
 type FormData = {
@@ -17,6 +17,11 @@ type FormData = {
 };
 
 const allRoles = site.services.flatMap((s) => s.items);
+
+const inputBase =
+  "w-full rounded-md border border-line bg-paper px-4 py-3 text-[14px] text-ink placeholder:text-muted/70 transition-colors duration-200 focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/15";
+
+const labelBase = "mb-2 block text-[13px] font-medium text-ink";
 
 export function QuoteForm() {
   const pg = site.pages.requestQuote;
@@ -47,49 +52,35 @@ export function QuoteForm() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // TODO: wire up to backend / email service
     console.log("Quote request:", form);
     setSubmitted(true);
   }
 
-  /* ---------------------------------------------------------------- */
-  /*  Success state                                                    */
-  /* ---------------------------------------------------------------- */
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-8 w-8">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
+      <div className="flex flex-col items-start py-14">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-paper text-ink">
+          <CheckIcon className="h-5 w-5" />
         </div>
-        <h2 className="mt-6 text-2xl font-bold text-[var(--brand-black)] sm:text-3xl">
+        <h2 className="mt-6 font-serif text-[28px] leading-[1.15] text-ink sm:text-[36px]">
           {pg.successHeading}
         </h2>
-        <p className="mt-3 max-w-md text-gray-600">{pg.successMessage}</p>
-        <Link
-          href="/"
-          className="mt-8 inline-flex rounded-xl bg-[var(--brand-blue)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--brand-blue-light)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2"
-        >
+        <p className="mt-4 max-w-md text-[15px] leading-[1.65] text-muted-strong">
+          {pg.successMessage}
+        </p>
+        <ButtonLink href="/" size="lg" variant="primary" withArrow className="mt-8">
           {pg.successCta}
-        </Link>
+        </ButtonLink>
       </div>
     );
   }
 
-  /* ---------------------------------------------------------------- */
-  /*  Form                                                             */
-  /* ---------------------------------------------------------------- */
-  const inputBase =
-    "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-[var(--brand-black)] placeholder:text-gray-400 transition focus:border-[var(--brand-blue)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)]/20";
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Name + Company row */}
+    <form onSubmit={handleSubmit} className="space-y-7">
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-1.5 block text-sm font-medium text-[var(--brand-black)]">
-            {pg.fields.name} <span className="text-[var(--brand-red)]">*</span>
+          <span className={labelBase}>
+            {pg.fields.name} <span className="text-signal">*</span>
           </span>
           <input
             type="text"
@@ -101,9 +92,7 @@ export function QuoteForm() {
           />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-sm font-medium text-[var(--brand-black)]">
-            {pg.fields.company}
-          </span>
+          <span className={labelBase}>{pg.fields.company}</span>
           <input
             type="text"
             value={form.company}
@@ -114,11 +103,10 @@ export function QuoteForm() {
         </label>
       </div>
 
-      {/* Email + Phone row */}
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-1.5 block text-sm font-medium text-[var(--brand-black)]">
-            {pg.fields.email} <span className="text-[var(--brand-red)]">*</span>
+          <span className={labelBase}>
+            {pg.fields.email} <span className="text-signal">*</span>
           </span>
           <input
             type="email"
@@ -130,9 +118,7 @@ export function QuoteForm() {
           />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-sm font-medium text-[var(--brand-black)]">
-            {pg.fields.phone}
-          </span>
+          <span className={labelBase}>{pg.fields.phone}</span>
           <input
             type="tel"
             value={form.phone}
@@ -143,12 +129,9 @@ export function QuoteForm() {
         </label>
       </div>
 
-      {/* Roles checkboxes */}
       <fieldset>
-        <legend className="mb-2.5 text-sm font-medium text-[var(--brand-black)]">
-          {pg.fields.roles}
-        </legend>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+        <legend className={labelBase}>{pg.fields.roles}</legend>
+        <div className="mt-1 grid grid-cols-2 gap-2 sm:grid-cols-3">
           {allRoles.map((role) => {
             const checked = form.roles.includes(role);
             return (
@@ -156,20 +139,20 @@ export function QuoteForm() {
                 key={role}
                 type="button"
                 onClick={() => toggleRole(role)}
-                className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left text-sm transition ${
+                className={`flex items-center gap-2.5 rounded-md border px-3 py-2.5 text-left text-[13px] transition-colors duration-200 ${
                   checked
-                    ? "border-[var(--brand-blue)] bg-[var(--brand-blue)]/5 text-[var(--brand-blue)]"
-                    : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50"
+                    ? "border-ink bg-ink/[0.04] text-ink"
+                    : "border-line bg-paper text-ink/80 hover:border-ink/40"
                 }`}
               >
                 <span
-                  className={`flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded border transition ${
+                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border transition-colors duration-200 ${
                     checked
-                      ? "border-[var(--brand-blue)] bg-[var(--brand-blue)] text-white"
-                      : "border-gray-300 bg-white"
+                      ? "border-ink bg-ink text-paper"
+                      : "border-line-strong bg-paper"
                   }`}
                 >
-                  {checked && <CheckIcon className="h-3 w-3" />}
+                  {checked && <CheckIcon className="h-2.5 w-2.5" />}
                 </span>
                 <span className="leading-snug">{role}</span>
               </button>
@@ -178,47 +161,43 @@ export function QuoteForm() {
         </div>
       </fieldset>
 
-      {/* Positions + Timeline row */}
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-1.5 block text-sm font-medium text-[var(--brand-black)]">
-            {pg.fields.positions}
-          </span>
+          <span className={labelBase}>{pg.fields.positions}</span>
           <select
             value={form.positions}
             onChange={(e) => set("positions", e.target.value)}
-            className={`${inputBase} appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%239ca3af%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem] bg-[right_0.75rem_center] bg-no-repeat pr-10`}
+            className={`${inputBase} appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%236b6f76%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem] bg-[right_0.75rem_center] bg-no-repeat pr-10`}
           >
             <option value="">Select...</option>
             {pg.positionOptions.map((opt) => (
-              <option key={opt} value={opt}>{opt}</option>
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
             ))}
           </select>
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-sm font-medium text-[var(--brand-black)]">
-            {pg.fields.timeline}
-          </span>
+          <span className={labelBase}>{pg.fields.timeline}</span>
           <select
             value={form.timeline}
             onChange={(e) => set("timeline", e.target.value)}
-            className={`${inputBase} appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%239ca3af%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem] bg-[right_0.75rem_center] bg-no-repeat pr-10`}
+            className={`${inputBase} appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%236b6f76%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.23%207.21a.75.75%200%20011.06.02L10%2011.168l3.71-3.938a.75.75%200%20111.08%201.04l-4.25%204.5a.75.75%200%2001-1.08%200l-4.25-4.5a.75.75%200%2001.02-1.06z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem] bg-[right_0.75rem_center] bg-no-repeat pr-10`}
           >
             <option value="">Select...</option>
             {pg.timelineOptions.map((opt) => (
-              <option key={opt} value={opt}>{opt}</option>
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
             ))}
           </select>
         </label>
       </div>
 
-      {/* Message */}
       <label className="block">
-        <span className="mb-1.5 block text-sm font-medium text-[var(--brand-black)]">
-          {pg.fields.message}
-        </span>
+        <span className={labelBase}>{pg.fields.message}</span>
         <textarea
-          rows={4}
+          rows={5}
           value={form.message}
           onChange={(e) => set("message", e.target.value)}
           placeholder="Tell us about the tools, workflows, or experience level you need..."
@@ -226,13 +205,9 @@ export function QuoteForm() {
         />
       </label>
 
-      {/* Submit */}
-      <button
-        type="submit"
-        className="w-full rounded-xl bg-[var(--brand-blue)] px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-[var(--brand-blue-light)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2 sm:w-auto"
-      >
+      <Button type="submit" size="lg" variant="primary" withArrow>
         {pg.submitLabel}
-      </button>
+      </Button>
     </form>
   );
 }
