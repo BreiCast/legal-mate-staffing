@@ -1,6 +1,6 @@
 import { site } from "@/content/siteContent";
-import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
+import { Container } from "@/components/layout/Container";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { iconMap } from "@/components/icons";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -18,67 +18,54 @@ export default function RequestQuotePage() {
       <PageHero
         label={pg.title}
         heading={pg.subtitle}
-        imageSrc={site.images.pageHero.src}
-        imageAlt={site.images.pageHero.alt}
       />
 
-      <section className="px-4 py-16 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
-            {/* Form column (2/3 width) */}
-            <div className="lg:col-span-2">
-              <h2 className="text-xl font-bold text-[var(--brand-black)] sm:text-2xl">
+      <section className="bg-paper py-24 sm:py-32">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+            {/* Form column */}
+            <div className="lg:col-span-8">
+              <h2 className="font-serif text-[26px] leading-[1.2] text-ink sm:text-[32px]">
                 {pg.formHeading}
               </h2>
-              <div className="mt-1 h-1 w-12 rounded-full bg-gradient-to-r from-[var(--brand-blue)] to-[var(--brand-red)]" />
-              <div className="mt-8">
+              <div className="mt-10">
                 <QuoteForm />
               </div>
             </div>
 
-            {/* Trust sidebar (1/3 width) */}
-            <aside className="lg:col-span-1">
-              <div className="sticky top-24 rounded-2xl border border-gray-200 bg-gray-50 p-6 sm:p-8">
-                <div className="relative -mx-6 -mt-6 mb-6 h-40 overflow-hidden rounded-t-2xl border-b border-gray-200 sm:-mx-8 sm:-mt-8">
-                  <Image
-                    src={site.images.quoteSidebar.src}
-                    alt={site.images.quoteSidebar.alt}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-sm font-semibold uppercase tracking-widest text-[var(--brand-blue)]">
+            {/* Trust sidebar */}
+            <aside className="lg:col-span-4">
+              <div className="sticky top-28 rounded-xl border border-line bg-paper p-7 sm:p-8">
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
                   {pg.trustHeading}
-                </h3>
-                <div className="mt-6 space-y-5">
+                </p>
+
+                <ul className="mt-6 space-y-5" role="list">
                   {pg.trustPoints.map((point) => {
                     const Icon = iconMap[point.icon] ?? iconMap.check;
                     return (
-                      <div key={point.text} className="flex items-start gap-3.5">
+                      <li key={point.text} className="flex items-start gap-3.5">
                         <IconBadge size="sm" hoverFlip={false}>
-                          <Icon className="h-5 w-5" />
+                          <Icon className="h-4 w-4" />
                         </IconBadge>
-                        <p className="text-sm leading-relaxed text-gray-600">
+                        <p className="text-[14px] leading-[1.6] text-muted-strong">
                           {point.text}
                         </p>
-                      </div>
+                      </li>
                     );
                   })}
-                </div>
+                </ul>
 
-                {/* Divider */}
-                <div className="my-6 h-px bg-gray-200" />
+                <div className="my-7 h-px bg-line" />
 
-                {/* Quick contact fallback */}
-                <p className="text-xs font-medium text-gray-500">
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
                   Prefer to talk first?
                 </p>
-                <div className="mt-2 flex flex-col gap-2">
+                <div className="mt-3 flex flex-col gap-2 text-[14px]">
                   {site.contact.email && (
                     <a
                       href={`mailto:${site.contact.email}`}
-                      className="text-sm font-medium text-[var(--brand-blue)] transition hover:underline"
+                      className="text-ink underline-offset-4 transition-colors hover:text-ink/70 hover:underline"
                     >
                       {site.contact.email}
                     </a>
@@ -88,7 +75,7 @@ export default function RequestQuotePage() {
                       href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-medium text-[var(--brand-blue)] transition hover:underline"
+                      className="text-ink underline-offset-4 transition-colors hover:text-ink/70 hover:underline"
                     >
                       WhatsApp us
                     </a>
@@ -96,7 +83,7 @@ export default function RequestQuotePage() {
                   {!site.contact.email && !site.contact.whatsapp && (
                     <a
                       href="/contact"
-                      className="text-sm font-medium text-[var(--brand-blue)] transition hover:underline"
+                      className="text-ink underline-offset-4 transition-colors hover:text-ink/70 hover:underline"
                     >
                       View contact details
                     </a>
@@ -105,7 +92,7 @@ export default function RequestQuotePage() {
               </div>
             </aside>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );
