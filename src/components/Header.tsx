@@ -4,19 +4,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { site } from "@/content/siteContent";
+import { Container } from "@/components/layout/Container";
+import { ButtonLink } from "@/components/ui/Button";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
   const { brand, navLinks, hero } = site;
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  // Close mobile menu on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -29,19 +30,29 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header
       ref={menuRef}
-      className="sticky top-0 z-50 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80"
+      className={`sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${
+        scrolled
+          ? "border-b border-line bg-paper/85 backdrop-blur"
+          : "border-b border-transparent bg-transparent"
+      }`}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        {/* Logo / Brand */}
+      <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="flex items-center transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2 rounded-lg"
+          className="flex items-center transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 rounded-sm"
           aria-label={brand.name}
         >
           <img
@@ -49,44 +60,38 @@ export function Header() {
             alt=""
             width={200}
             height={56}
-            className="h-10 w-auto max-h-12 object-contain object-left shrink-0"
+            className="h-9 w-auto max-h-12 object-contain object-left shrink-0"
             style={{ imageRendering: "-webkit-optimize-contrast" }}
             fetchPriority="high"
             decoding="async"
           />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`relative rounded-lg px-3.5 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2 ${
-                isActive(link.href)
-                  ? "text-[var(--brand-blue)]"
-                  : "text-gray-600 hover:bg-gray-100 hover:text-[var(--brand-black)]"
-              }`}
-              aria-current={isActive(link.href) ? "page" : undefined}
-            >
-              {link.label}
-              {isActive(link.href) && (
-                <span className="absolute inset-x-1.5 -bottom-[1px] h-0.5 rounded-full bg-[var(--brand-blue)]" />
-              )}
-            </Link>
-          ))}
-          <Link
-            href={hero.cta.requestQuote.href}
-            className="ml-4 rounded-xl bg-[var(--brand-blue)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--brand-blue-light)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2"
-          >
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+          {navLinks
+            .filter((l) => l.href !== "/")
+            .map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-[13px] font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 rounded-sm ${
+                  isActive(link.href)
+                    ? "text-ink"
+                    : "text-muted hover:text-ink"
+                }`}
+                aria-current={isActive(link.href) ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
+          <ButtonLink href={hero.cta.requestQuote.href} size="md" withArrow>
             {hero.cta.requestQuote.label}
-          </Link>
+          </ButtonLink>
         </nav>
 
-        {/* Mobile hamburger */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink transition hover:bg-ink/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 md:hidden"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
           aria-expanded={mobileMenuOpen}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -95,7 +100,7 @@ export function Header() {
             className="h-5 w-5"
             fill="none"
             stroke="currentColor"
-            strokeWidth={2}
+            strokeWidth={1.5}
             viewBox="0 0 24 24"
           >
             {mobileMenuOpen ? (
@@ -108,31 +113,30 @@ export function Header() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                d="M4 7h16M4 12h16M4 17h16"
               />
             )}
           </svg>
         </button>
-      </div>
+      </Container>
 
-      {/* Mobile menu */}
       <div
-        className={`overflow-hidden transition-all duration-200 ease-in-out md:hidden ${
+        className={`overflow-hidden border-line bg-paper transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)] md:hidden ${
           mobileMenuOpen
-            ? "max-h-96 border-t border-[var(--border)] opacity-100"
-            : "max-h-0 opacity-0"
+            ? "max-h-96 border-t opacity-100"
+            : "max-h-0 border-t-transparent opacity-0"
         }`}
       >
-        <nav className="space-y-1 px-4 py-4" aria-label="Mobile">
+        <Container className="py-5" as="nav" aria-label="Mobile">
           <ul className="space-y-1" role="list">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+                  className={`block rounded-md px-3 py-2.5 text-[14px] font-medium transition ${
                     isActive(link.href)
-                      ? "bg-[var(--brand-blue)]/5 text-[var(--brand-blue)]"
-                      : "text-gray-600 hover:bg-gray-100 hover:text-[var(--brand-black)]"
+                      ? "bg-ink/[0.04] text-ink"
+                      : "text-muted hover:bg-ink/[0.03] hover:text-ink"
                   }`}
                   aria-current={isActive(link.href) ? "page" : undefined}
                 >
@@ -141,15 +145,17 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <div className="pt-3">
-            <Link
+          <div className="pt-4">
+            <ButtonLink
               href={hero.cta.requestQuote.href}
-              className="block w-full rounded-xl bg-[var(--brand-blue)] px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--brand-blue-light)]"
+              size="lg"
+              className="w-full"
+              withArrow
             >
               {hero.cta.requestQuote.label}
-            </Link>
+            </ButtonLink>
           </div>
-        </nav>
+        </Container>
       </div>
     </header>
   );

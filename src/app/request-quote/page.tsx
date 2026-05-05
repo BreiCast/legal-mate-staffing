@@ -1,4 +1,5 @@
 import { site } from "@/content/siteContent";
+import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { iconMap } from "@/components/icons";
@@ -14,7 +15,12 @@ export default function RequestQuotePage() {
 
   return (
     <>
-      <PageHero label={pg.title} heading={pg.subtitle} />
+      <PageHero
+        label={pg.title}
+        heading={pg.subtitle}
+        imageSrc={site.images.pageHero.src}
+        imageAlt={site.images.pageHero.alt}
+      />
 
       <section className="px-4 py-16 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-6xl">
@@ -33,6 +39,15 @@ export default function RequestQuotePage() {
             {/* Trust sidebar (1/3 width) */}
             <aside className="lg:col-span-1">
               <div className="sticky top-24 rounded-2xl border border-gray-200 bg-gray-50 p-6 sm:p-8">
+                <div className="relative -mx-6 -mt-6 mb-6 h-40 overflow-hidden rounded-t-2xl border-b border-gray-200 sm:-mx-8 sm:-mt-8">
+                  <Image
+                    src={site.images.quoteSidebar.src}
+                    alt={site.images.quoteSidebar.alt}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
                 <h3 className="text-sm font-semibold uppercase tracking-widest text-[var(--brand-blue)]">
                   {pg.trustHeading}
                 </h3>

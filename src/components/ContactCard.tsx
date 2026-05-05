@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/content/siteContent";
 import { IconBadge } from "@/components/ui/IconBadge";
 import {
@@ -152,6 +153,16 @@ export function ContactCard() {
         <p className="mx-auto mt-3 max-w-lg text-gray-500">
           {pg.reachSubhead}
         </p>
+      </div>
+
+      <div className="relative mt-10 h-56 overflow-hidden rounded-2xl border border-gray-200">
+        <Image
+          src={site.images.contactBanner.src}
+          alt={site.images.contactBanner.alt}
+          fill
+          sizes="(min-width: 1024px) 60vw, 100vw"
+          className="object-cover"
+        />
       </div>
 
       {/* Contact method tiles — 2-column grid for even layout */}

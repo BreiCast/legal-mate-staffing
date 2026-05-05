@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { site } from "@/content/siteContent";
+import { Container } from "@/components/layout/Container";
+import { ButtonLink } from "@/components/ui/Button";
 
 function SocialIcon({ platform }: { platform: string }) {
   const paths: Record<string, string> = {
@@ -8,8 +10,7 @@ function SocialIcon({ platform }: { platform: string }) {
     instagram:
       "M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5M12 7a5 5 0 110 10 5 5 0 010-10m0 2a3 3 0 100 6 3 3 0 000-6z",
     facebook: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z",
-    tiktok:
-      "M9 12a4 4 0 104 4V4a5 5 0 005 5",
+    tiktok: "M9 12a4 4 0 104 4V4a5 5 0 005 5",
   };
 
   return (
@@ -20,7 +21,7 @@ function SocialIcon({ platform }: { platform: string }) {
       strokeWidth={1.5}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-5 w-5"
+      className="h-4 w-4"
     >
       <path d={paths[platform] ?? paths.linkedin} />
     </svg>
@@ -28,86 +29,74 @@ function SocialIcon({ platform }: { platform: string }) {
 }
 
 export function Footer() {
-  const { brand, navLinks, footer, contact, services, hero } = site;
+  const { brand, navLinks, footer, contact, services, hero, compliance } = site;
 
   const socials = Object.entries(contact.social).filter(([, url]) => url);
-  const serviceNames = services.flatMap((s) => s.items).slice(0, 9);
+  const serviceNames = services.flatMap((s) => s.items).slice(0, 8);
 
   return (
-    <footer className="relative overflow-hidden bg-[var(--brand-black)]">
-      {/* Subtle decorative gradient */}
-      <div className="absolute inset-0 opacity-[0.04]">
-        <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-[var(--brand-blue)] blur-3xl" />
-        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-[var(--brand-red)] blur-3xl" />
-      </div>
-
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Top section with CTA bar */}
-        <div className="flex flex-col items-center justify-between gap-6 border-b border-white/10 py-10 sm:flex-row">
-          <div className="text-center sm:text-left">
-            <p className="text-lg font-semibold text-white">
-              Ready to build your remote team?
-            </p>
-            <p className="mt-1 text-sm text-gray-400">
-              Let&apos;s find the right talent for your firm.
-            </p>
-          </div>
-          <Link
-            href={hero.cta.requestQuote.href}
-            className="shrink-0 rounded-xl bg-[var(--brand-blue)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--brand-blue-light)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--brand-black)]"
-          >
-            {footer.cta}
-          </Link>
-        </div>
-
-        {/* Main footer grid */}
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand column */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="inline-flex transition hover:opacity-90" aria-label={brand.name}>
+    <footer className="border-t border-line bg-paper">
+      <Container className="py-16 sm:py-20">
+        <div className="grid gap-12 sm:grid-cols-12 sm:gap-10">
+          {/* Brand + tagline + CTA */}
+          <div className="sm:col-span-12 lg:col-span-5">
+            <Link
+              href="/"
+              className="inline-flex transition hover:opacity-90"
+              aria-label={brand.name}
+            >
               <img
                 src={brand.logo}
                 alt=""
                 width={200}
                 height={56}
-                className="h-10 w-auto max-h-12 object-contain shrink-0"
+                className="h-9 w-auto max-h-12 object-contain"
                 style={{ imageRendering: "-webkit-optimize-contrast" }}
                 decoding="async"
               />
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-gray-400">
-              {footer.description}
+            <p className="mt-6 max-w-sm font-serif text-[22px] leading-[1.25] text-ink">
+              {footer.tagline}.
             </p>
-            {/* Social links */}
-            {socials.length > 0 && (
-              <div className="mt-6 flex gap-3">
-                {socials.map(([platform, url]) => (
-                  <a
-                    key={platform}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={platform}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-gray-400 transition hover:bg-[var(--brand-blue)]/20 hover:text-[var(--brand-blue)]"
-                  >
-                    <SocialIcon platform={platform} />
-                  </a>
-                ))}
-              </div>
-            )}
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <ButtonLink
+                href={hero.cta.requestQuote.href}
+                size="md"
+                variant="primary"
+                withArrow
+              >
+                {footer.cta}
+              </ButtonLink>
+              {socials.length > 0 && (
+                <div className="ml-2 flex gap-2">
+                  {socials.map(([platform, url]) => (
+                    <a
+                      key={platform}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={platform}
+                      className="flex h-9 w-9 items-center justify-center rounded-md border border-line text-muted transition-colors hover:border-ink hover:text-ink"
+                    >
+                      <SocialIcon platform={platform} />
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Pages column */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+          {/* Pages */}
+          <div className="sm:col-span-4 lg:col-span-2 lg:col-start-7">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
               {footer.pagesLabel}
             </p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-5 space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-400 transition hover:text-white"
+                    className="text-[14px] text-ink/80 transition-colors hover:text-ink"
                   >
                     {link.label}
                   </Link>
@@ -116,31 +105,31 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services column */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+          {/* Services */}
+          <div className="sm:col-span-4 lg:col-span-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
               {footer.servicesLabel}
             </p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-5 space-y-3">
               {serviceNames.map((name) => (
                 <li key={name}>
-                  <span className="text-sm text-gray-400">{name}</span>
+                  <span className="text-[14px] text-ink/80">{name}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact column */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+          {/* Contact */}
+          <div className="sm:col-span-4 lg:col-span-2">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
               {footer.contactLabel}
             </p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-5 space-y-3">
               {contact.email && (
                 <li>
                   <a
                     href={`mailto:${contact.email}`}
-                    className="text-sm text-gray-400 transition hover:text-white"
+                    className="text-[14px] text-ink/80 transition-colors hover:text-ink"
                   >
                     {contact.email}
                   </a>
@@ -150,7 +139,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`tel:${contact.phone}`}
-                    className="text-sm text-gray-400 transition hover:text-white"
+                    className="text-[14px] text-ink/80 transition-colors hover:text-ink"
                   >
                     {contact.phone}
                   </a>
@@ -162,7 +151,7 @@ export function Footer() {
                     href={`https://wa.me/${contact.whatsapp.replace(/\D/g, "")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-gray-400 transition hover:text-white"
+                    className="text-[14px] text-ink/80 transition-colors hover:text-ink"
                   >
                     WhatsApp
                   </a>
@@ -172,7 +161,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/contact"
-                    className="text-sm text-gray-400 transition hover:text-white"
+                    className="text-[14px] text-ink/80 transition-colors hover:text-ink"
                   >
                     Get in touch
                   </Link>
@@ -182,17 +171,27 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-3 border-t border-white/10 py-6 sm:flex-row">
-          <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} {brand.name}. {footer.legal}
-          </p>
-          <div className="h-1 w-12 rounded-full bg-gradient-to-r from-[var(--brand-blue)] to-[var(--brand-red)] sm:hidden" />
-          <p className="text-xs text-gray-600">
-            {brand.tagline}
+        {/* Compliance row */}
+        <div className="mt-16 border-t border-line pt-8">
+          <p className="max-w-3xl text-[12px] leading-[1.6] text-muted">
+            <span className="font-mono uppercase tracking-[0.18em] text-ink/70">
+              {compliance.headline}
+            </span>
+            <span className="mx-2 text-line-strong">·</span>
+            {compliance.text}
           </p>
         </div>
-      </div>
+
+        {/* Bottom bar */}
+        <div className="mt-8 flex flex-col items-start justify-between gap-2 border-t border-line pt-6 sm:flex-row sm:items-center">
+          <p className="text-[12px] text-muted">
+            &copy; {new Date().getFullYear()} {brand.name}. {footer.legal}
+          </p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+            Remote · Bilingual · U.S. legal workflows
+          </p>
+        </div>
+      </Container>
     </footer>
   );
 }
