@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Analytics } from "@/components/Analytics";
+import { StructuredData } from "@/components/StructuredData";
+import { organizationSchema, pageMetadata } from "@/lib/seo";
+import { siteUrl } from "@/lib/config";
+import { company } from "@/content/company";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,7 +14,6 @@ const inter = Inter({
   variable: "--font-inter",
   display: "swap",
 });
-
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
@@ -17,33 +21,40 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   display: "swap",
 });
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Legal Mate Staffing — Remote legal & operations talent for U.S. firms",
-  description:
-    "We place vetted, bilingual remote case managers, paralegals, and intake teams for U.S. law firms — built by former legal operations professionals.",
+  ...pageMetadata(
+    "Bilingual Legal Staffing for U.S. Law Firms",
+    company.description,
+    "/",
+  ),
+  metadataBase: new URL(siteUrl),
+  title: {
+    default:
+      "Bilingual Legal Staffing for U.S. Law Firms | Legal Mate Staffing",
+    template: "%s | Legal Mate Staffing",
+  },
+  applicationName: company.name,
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+  },
 };
-
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className="min-h-screen bg-paper text-ink antialiased">
+    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
+      <body>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <Header />
-        <main>{children}</main>
+        <main id="main-content" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
+        <StructuredData data={organizationSchema()} />
+        <Analytics />
       </body>
     </html>
   );
