@@ -2,161 +2,138 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
-import { site } from "@/content/siteContent";
-import { Container } from "@/components/layout/Container";
-import { ButtonLink } from "@/components/ui/Button";
+import { useEffect, useRef, useState } from "react";
+import { company } from "@/content/company";
+import { contact } from "@/lib/config";
+import { Brand, ButtonLink, Container } from "@/components/ui/Primitives";
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const menuRef = useRef<HTMLDivElement>(null);
-  const { brand, navLinks, hero } = site;
-
+  const toggle = useRef<HTMLButtonElement>(null);
+  const header = useRef<HTMLElement>(null);
   useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setMobileMenuOpen(false);
+    if (!open) return;
+    function close(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggle.current?.focus();
       }
     }
-    if (mobileMenuOpen) {
-      document.addEventListener("mousedown", handleClick);
+    function outside(event: MouseEvent) {
+      if (!header.current?.contains(event.target as Node)) setOpen(false);
     }
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [mobileMenuOpen]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
-
+    document.addEventListener("keydown", close);
+    document.addEventListener("mousedown", outside);
+    return () => {
+      document.removeEventListener("keydown", close);
+      document.removeEventListener("mousedown", outside);
+    };
+  }, [open]);
+  const active = (href: string) =>
+    pathname === href ||
+    (href === "/legal-staffing" && /^\/(roles|practice-areas)/.test(pathname));
   return (
-    <header
-      ref={menuRef}
-      className={`sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] ${
-        scrolled
-          ? "border-b border-line bg-paper/85 backdrop-blur"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <Container className="flex h-16 items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 rounded-sm"
-          aria-label={brand.name}
-        >
-          <img
-            src={brand.logo}
-            alt=""
-            width={200}
-            height={56}
-            className="h-9 w-auto max-h-12 object-contain object-left shrink-0"
-            style={{ imageRendering: "-webkit-optimize-contrast" }}
-            fetchPriority="high"
-            decoding="async"
-          />
-        </Link>
-
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
-          {navLinks
-            .filter((l) => l.href !== "/")
-            .map((link) => (
+    <header className="site-header" ref={header}>
+      <Container>
+        <div className="header-main">
+          <Brand />
+          <nav className="desktop-nav" aria-label="Main navigation">
+            {company.navigation.map((item) => (
               <Link
-                key={link.href}
-                href={link.href}
-                className={`text-[13px] font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 rounded-sm ${
-                  isActive(link.href)
-                    ? "text-ink"
-                    : "text-muted hover:text-ink"
-                }`}
-                aria-current={isActive(link.href) ? "page" : undefined}
+                key={item.href}
+                href={item.href}
+                aria-current={active(item.href) ? "page" : undefined}
               >
-                {link.label}
+                {item.label}
               </Link>
             ))}
-          <ButtonLink href={hero.cta.requestQuote.href} size="md" withArrow>
-            {hero.cta.requestQuote.label}
-          </ButtonLink>
-        </nav>
-
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink transition hover:bg-ink/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 md:hidden"
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-          aria-expanded={mobileMenuOpen}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-        >
-          <svg
-            className="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.5}
-            viewBox="0 0 24 24"
-          >
-            {mobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 7h16M4 12h16M4 17h16"
-              />
+          </nav>
+          <div className="header-actions">
+            {contact.bookingUrl && (
+              <Link
+                className="header-book"
+                href={contact.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-event="book_call_click"
+                data-location="navigation"
+              >
+                Book a call
+              </Link>
             )}
-          </svg>
-        </button>
-      </Container>
-
-      <div
-        className={`overflow-hidden border-line bg-paper transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)] md:hidden ${
-          mobileMenuOpen
-            ? "max-h-96 border-t opacity-100"
-            : "max-h-0 border-t-transparent opacity-0"
-        }`}
-      >
-        <Container className="py-5" as="nav" aria-label="Mobile">
-          <ul className="space-y-1" role="list">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`block rounded-md px-3 py-2.5 text-[14px] font-medium transition ${
-                    isActive(link.href)
-                      ? "bg-ink/[0.04] text-ink"
-                      : "text-muted hover:bg-ink/[0.03] hover:text-ink"
-                  }`}
-                  aria-current={isActive(link.href) ? "page" : undefined}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="pt-4">
             <ButtonLink
-              href={hero.cta.requestQuote.href}
-              size="lg"
-              className="w-full"
-              withArrow
+              href="/request-candidates"
+              event="primary_cta_click"
+              location="navigation"
             >
-              {hero.cta.requestQuote.label}
+              Find legal staff
             </ButtonLink>
           </div>
-        </Container>
-      </div>
+          <button
+            ref={toggle}
+            className="menu-toggle"
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            onClick={() => setOpen(!open)}
+          >
+            <span>{open ? "Close" : "Menu"}</span>
+            <svg
+              aria-hidden="true"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <path d={open ? "m6 6 12 12M6 18 18 6" : "M3 8h18M3 16h18"} />
+            </svg>
+          </button>
+        </div>
+        <nav
+          id="mobile-navigation"
+          className="mobile-nav"
+          aria-label="Mobile navigation"
+          hidden={!open}
+        >
+          {company.navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              aria-current={active(item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/talent" onClick={() => setOpen(false)}>
+            Example candidate profiles
+          </Link>
+          {contact.bookingUrl && (
+            <a
+              href={contact.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              data-event="book_call_click"
+              data-location="mobile_navigation"
+            >
+              Book a call
+            </a>
+          )}
+          <Link
+            className="button button-primary"
+            href="/request-candidates"
+            onClick={() => setOpen(false)}
+            data-event="primary_cta_click"
+            data-location="mobile_navigation"
+          >
+            Find legal staff <span aria-hidden="true">↗</span>
+          </Link>
+        </nav>
+      </Container>
     </header>
   );
 }

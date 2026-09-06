@@ -1,176 +1,69 @@
-import { site } from "@/content/siteContent";
-import Image from "next/image";
-import { FoundersSection } from "@/components/FoundersSection";
-import { PageHero } from "@/components/ui/PageHero";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { IconBadge } from "@/components/ui/IconBadge";
-import { iconMap, BarChartIcon, EyeIcon } from "@/components/icons";
-
-export const metadata = {
-  title: `${site.pages.about.title} | ${site.brand.name}`,
-  description: site.description,
-};
-
+import {
+  FoundersSection,
+  ConfidentialitySection,
+} from "@/components/marketing/HomeSections";
+import { PageIntro, Section } from "@/components/ui/Primitives";
+import { CTA } from "@/components/CTA";
+import { pageMetadata } from "@/lib/seo";
+export const metadata = pageMetadata(
+  "Built by Legal Operators",
+  "Meet the founders of Legal Mate Staffing and the U.S. legal operations experience behind our approach to bilingual remote staffing.",
+  "/about",
+);
 export default function AboutPage() {
-  const { description, mission, vision, values, keyMessage } = site;
-  const aboutPage = site.pages.about;
-
   return (
     <>
-      {/* Hero banner */}
-      <PageHero
-        label={aboutPage.title}
-        heading={aboutPage.subtitle}
-        imageSrc={site.images.pageHero.src}
-        imageAlt={site.images.pageHero.alt}
+      <PageIntro
+        eyebrow="Our story"
+        title={
+          <>
+            Legal staffing, with
+            <br />
+            <em>an inside perspective.</em>
+          </>
+        }
+        description="A job description tells you the responsibilities. Doing the work teaches you what a good hire actually looks like."
+        breadcrumbs={[{ label: "Our story" }]}
       />
-
-      {/* Story section */}
-      <section className="px-4 py-16 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-            <div>
-              <SectionHeading
-                label={aboutPage.storyLabel}
-                heading={aboutPage.storyHeading}
-                align="left"
-              />
-              <p className="mt-6 leading-relaxed text-gray-600">
-                {description}
-              </p>
-              <p className="mt-4 leading-relaxed text-gray-600">
-                {keyMessage}
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
-                <Image
-                  src={site.images.aboutStory.src}
-                  alt={site.images.aboutStory.alt}
-                  fill
-                  sizes="(min-width: 1024px) 45vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Stat cards */}
-              <div className="grid grid-cols-2 gap-4">
-                {aboutPage.stats.map((stat, idx) => {
-                  const colors = [
-                    "from-[var(--brand-blue)]/5",
-                    "from-[var(--brand-red)]/5",
-                    "from-gray-100",
-                    "from-[var(--brand-blue)]/5 to-[var(--brand-red)]/5",
-                  ];
-                  const textColors = [
-                    "text-[var(--brand-blue)]",
-                    "text-[var(--brand-red)]",
-                    "text-[var(--brand-black)]",
-                    "text-[var(--brand-blue)]",
-                  ];
-                  return (
-                    <div
-                      key={stat.value}
-                      className={`rounded-2xl border border-gray-200 bg-gradient-to-br ${colors[idx] ?? "from-gray-100"} to-transparent p-6 text-center`}
-                    >
-                      <p className={`text-3xl font-bold ${textColors[idx] ?? "text-[var(--brand-black)]"}`}>
-                        {stat.value}
-                      </p>
-                      <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+      <Section>
+        <div className="detail-grid">
+          <div className="detail-content">
+            <h2>Our experience is the starting point.</h2>
+            <p>
+              André Rodriguez Leones and Henry Andrés Sánchez Martínez built
+              Legal Mate after working in legal operations supporting U.S.
+              organizations. They saw the difference that consistent
+              follow-through, accurate documentation, and thoughtful client
+              communication make to a team.
+            </p>
+            <p>
+              That experience became the foundation of the business: understand
+              the work first, then look for the person who can do it well.
+            </p>
+            <h2>A considered search, from the start.</h2>
+            <p>
+              We learn how your firm works, clarify the responsibilities you
+              want to delegate, and evaluate bilingual LATAM professionals
+              against that brief. The aim is a dedicated team member who fits
+              your operation and communicates clearly with the people around
+              them.
+            </p>
           </div>
+          <aside className="detail-aside">
+            <h2>What guides the work</h2>
+            <ul>
+              <li>Understand the role beyond the title.</li>
+              <li>Evaluate communication alongside technical ability.</li>
+              <li>Be clear about experience and expectations.</li>
+              <li>Respect the people on both sides of a placement.</li>
+              <li>Stay involved as the working relationship develops.</li>
+            </ul>
+          </aside>
         </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="bg-gray-50 px-4 py-16 sm:px-6 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-2">
-          <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5">
-            <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[var(--brand-blue)]/5 transition-transform duration-500 group-hover:scale-150" />
-            <div className="relative">
-              <div className="relative mb-4 h-36 overflow-hidden rounded-xl border border-gray-100">
-                <Image
-                  src={site.images.aboutMission.src}
-                  alt={site.images.aboutMission.alt}
-                  fill
-                  sizes="(min-width: 640px) 30vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <IconBadge size="sm">
-                <BarChartIcon className="h-5 w-5" />
-              </IconBadge>
-              <h2 className="mt-4 text-xl font-bold text-[var(--brand-black)]">{aboutPage.missionLabel}</h2>
-              <p className="mt-3 leading-relaxed text-gray-600">{mission}</p>
-            </div>
-          </div>
-          <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5">
-            <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[var(--brand-red)]/5 transition-transform duration-500 group-hover:scale-150" />
-            <div className="relative">
-              <div className="relative mb-4 h-36 overflow-hidden rounded-xl border border-gray-100">
-                <Image
-                  src={site.images.aboutVision.src}
-                  alt={site.images.aboutVision.alt}
-                  fill
-                  sizes="(min-width: 640px) 30vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <IconBadge size="sm">
-                <EyeIcon className="h-5 w-5" />
-              </IconBadge>
-              <h2 className="mt-4 text-xl font-bold text-[var(--brand-black)]">{aboutPage.visionLabel}</h2>
-              <p className="mt-3 leading-relaxed text-gray-600">{vision}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="px-4 py-16 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeading
-            label={aboutPage.valuesSubhead}
-            heading={aboutPage.valuesLabel}
-          />
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((v) => {
-              const Icon = iconMap[v.icon] ?? iconMap.star;
-              return (
-                <div
-                  key={v.title}
-                  className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-blue)]/30 hover:shadow-lg hover:shadow-[var(--brand-blue)]/5"
-                >
-                  {/* Gradient orb */}
-                  <div className="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-gradient-to-br from-[var(--brand-blue)]/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                  <div className="relative mb-4">
-                    <IconBadge>
-                      <Icon />
-                    </IconBadge>
-                  </div>
-                  <h3 className="relative font-semibold text-[var(--brand-black)] transition-colors duration-200 group-hover:text-[var(--brand-blue)]">
-                    {v.title}
-                  </h3>
-                  <p className="relative mt-2 text-sm leading-relaxed text-gray-500">
-                    {v.text}
-                  </p>
-                  {/* Bottom accent bar */}
-                  <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-[var(--brand-blue)] to-[var(--brand-red)] transition-all duration-500 group-hover:w-full" />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Founders */}
-      <FoundersSection />
+      </Section>
+      <FoundersSection full />
+      <ConfidentialitySection />
+      <CTA />
     </>
   );
 }

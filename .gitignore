@@ -40,3 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .cursor/
+
+# Share configuration names, never credentials.
+!.env.example
+
+# Local browser reports and captures
+.verification/
+/test-results/
+/playwright-report/

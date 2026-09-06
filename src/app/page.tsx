@@ -1,23 +1,43 @@
-import { Hero } from "@/components/marketing/Hero";
-import { TrustBar } from "@/components/marketing/TrustBar";
-import { ServicesList } from "@/components/marketing/ServicesList";
-import { ProcessRail } from "@/components/marketing/ProcessRail";
-import { Bento } from "@/components/marketing/Bento";
-import { FoundersBlock } from "@/components/marketing/FoundersBlock";
-import { CtaBand } from "@/components/marketing/CtaBand";
-import { FaqList } from "@/components/marketing/FaqList";
-
+import {
+  Hero,
+  TrustStrip,
+  ValueSection,
+  RolesSection,
+  PracticeAreasSection,
+  ProcessSection,
+  FoundersSection,
+  TalentSection,
+  WorkflowSection,
+  EconomicsSection,
+  ConfidentialitySection,
+  VerifiedProof,
+} from "@/components/marketing/HomeSections";
+import { FAQ } from "@/components/FAQ";
+import { CTA } from "@/components/CTA";
+import { company } from "@/content/company";
+import { pageMetadata } from "@/lib/seo";
+export const metadata = pageMetadata(
+  "Bilingual Legal Staffing for U.S. Law Firms",
+  company.description,
+  "/",
+);
 export default function Home() {
   return (
     <>
       <Hero />
-      <TrustBar />
-      <ServicesList />
-      <ProcessRail />
-      <Bento />
-      <FoundersBlock />
-      <CtaBand />
-      <FaqList />
+      <TrustStrip />
+      <ValueSection />
+      <RolesSection />
+      <PracticeAreasSection />
+      <FoundersSection />
+      <ProcessSection />
+      <TalentSection />
+      <WorkflowSection />
+      <EconomicsSection />
+      <ConfidentialitySection />
+      <VerifiedProof />
+      <FAQ />
+      <CTA />
     </>
   );
 }
