@@ -71,7 +71,7 @@ export function CandidateCard({
             ? "Example candidate profile"
             : "Candidate profile"}
         </span>
-        <span aria-hidden="true">↗</span>
+        <Arrow diagonal />
       </div>
       <div className="candidate-role">
         <div className="candidate-monogram" aria-hidden="true">

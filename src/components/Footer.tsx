@@ -3,7 +3,7 @@ import { company } from "@/content/company";
 import { roles } from "@/content/roles";
 import { practiceAreas } from "@/content/practice-areas";
 import { contact } from "@/lib/config";
-import { Brand, Container } from "@/components/ui/Primitives";
+import { Arrow, Brand, Container } from "@/components/ui/Primitives";
 
 export function Footer() {
   return (
@@ -70,7 +70,7 @@ export function Footer() {
                   data-event="primary_cta_click"
                   data-location="footer"
                 >
-                  Find legal staff ↗
+                  Find legal staff <Arrow diagonal />
                 </Link>
               </li>
               {contact.email && (
@@ -80,7 +80,7 @@ export function Footer() {
                     data-event="email_click"
                     data-location="footer"
                   >
-                    Email us ↗
+                    Email us <Arrow diagonal />
                   </a>
                 </li>
               )}
@@ -104,7 +104,7 @@ export function Footer() {
                     data-event="whatsapp_click"
                     data-location="footer"
                   >
-                    WhatsApp ↗
+                    WhatsApp <Arrow diagonal />
                   </a>
                 </li>
               )}
@@ -115,7 +115,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    LinkedIn ↗
+                    LinkedIn <Arrow diagonal />
                   </a>
                 </li>
               )}

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { company } from "@/content/company";
 import { contact } from "@/lib/config";
-import { Brand, ButtonLink, Container } from "@/components/ui/Primitives";
+import { Arrow, Brand, ButtonLink, Container } from "@/components/ui/Primitives";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -130,7 +130,7 @@ export function Header() {
             data-event="primary_cta_click"
             data-location="mobile_navigation"
           >
-            Find legal staff <span aria-hidden="true">↗</span>
+            Find legal staff <Arrow diagonal />
           </Link>
         </nav>
       </Container>
